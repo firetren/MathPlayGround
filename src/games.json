@@ -1,7 +1,7 @@
 [
   {
     "id": "racing-limits",
-    "title": "Math Connections",
+    "title": "Racing Limits",
     "description": "Connect blocks of numbers in high-octane speed challenges!",
     "iframeUrl": "https://racing-limits.game-files.crazygames.com/unity/unity2020/racing-limits.html?isFirstSession=true&v=2.2",
     "category": "Math Games",
@@ -9,12 +9,12 @@
     "instructions": "Connect blocks of numbers in high-octane speed challenges!",
     "credits": "Math Playground Studio",
     "color": "from-orange-500 to-yellow-500",
-    "thumbnailUrl": "./src/assets/images/draw_surfer_thumbnail_1780166688431.png",
+    "thumbnailUrl": "https://images.crazygames.com/games/racing-limits/cover_16x9.png",
     "thumbnailFit": "cover"
   },
   {
     "id": "city-bus-driver",
-    "title": "Focus and Precision",
+    "title": "City Bus Driver",
     "description": "Trace the paths with absolute concentration and guide your vehicle safely.",
     "iframeUrl": "https://games.crazygames.com/en_US/city-bus-driver/index.html?isFirstSession=true&v=2.2",
     "category": "Logic Lab",
@@ -22,12 +22,12 @@
     "instructions": "Hold and drag along the line carefully to guide the cat racer through winding curves.",
     "credits": "Nod Games",
     "color": "from-indigo-600 to-indigo-800",
-    "thumbnailUrl": "https://www.mathplayground.com/images/trace_300.png",
+    "thumbnailUrl": "https://images.crazygames.com/games/city-bus-driver/cover_16x9.png",
     "thumbnailFit": "cover"
   },
   {
     "id": "drift-boss",
-    "title": "Spatial Reasoning",
+    "title": "Drift Boss Maze",
     "description": "Test your geometry and angles in this high-speed diagonal jumping puzzle.",
     "iframeUrl": "https://gamecollections.me/game/owner/drift-boss-gm/",
     "category": "Brain Boosts",
@@ -35,12 +35,12 @@
     "instructions": "Tap and hold Space or Click to drift right. Double-jump at the blue checkpoints to pass obstacles.",
     "credits": "MarketJS",
     "color": "from-yellow-500 to-amber-600",
-    "thumbnailUrl": "https://www.mathplayground.com/images/catninja_300.png",
+    "thumbnailUrl": "https://i.ibb.co/v6F16kT9/drift-boss-thumbnail-mathplaygroud-copy.webp",
     "thumbnailFit": "cover"
   },
   {
     "id": "subway-surfers",
-    "title": "Problem Solving",
+    "title": "Subway Runner",
     "description": "Gather keys and shield block items in this mysterious underground dungeon run.",
     "iframeUrl": "https://szhong.4399.com/4399swf//upload_swf/ftp35/liuxinyu/20210324/jj01/index.html",
     "category": "Library",
@@ -48,12 +48,12 @@
     "instructions": "Dodge guards, slide under gates, collect the gold keys, and clear the dungeon block.",
     "credits": "SYBO Games",
     "color": "from-teal-500 to-cyan-600",
-    "thumbnailUrl": "https://www.mathplayground.com/images/key_shield_300.png",
+    "thumbnailUrl": "https://i.ibb.co/PG23ThWR/Subway-Surfersthumb-m240x144.jpg",
     "thumbnailFit": "cover"
   },
   {
     "id": "smash-karts",
-    "title": "Problem Solving",
+    "title": "Smash Karts",
     "description": "Guide your block karts to solve intense mechanical grid puzzle layouts.",
     "iframeUrl": "https://smashkarts.io",
     "category": "Library",
@@ -61,12 +61,12 @@
     "instructions": "Rotate switches, align lock blocks, and guide your kart to trigger the green gate portals.",
     "credits": "Tall Team",
     "color": "from-rose-500 to-red-650",
-    "thumbnailUrl": "https://www.mathplayground.com/images/red_block_escape_300.png",
+    "thumbnailUrl": "https://i.ibb.co/qLydHLys/smashkarts-thumb-2.png",
     "thumbnailFit": "cover"
   },
   {
     "id": "gulper-io",
-    "title": "Spatial Reasoning",
+    "title": "Gulper.io",
     "description": "Launch your logic forward in Use Your Head Part 3, testing gravity, speed, and timing.",
     "iframeUrl": "https://gulper.io/?isNewUser=false&__nextLocale=en-US",
     "category": "Brain Boosts",
@@ -74,12 +74,12 @@
     "instructions": "Propel the elastic block head to hit the target button. Control velocity and wall rebounds.",
     "credits": "Head Labs",
     "color": "from-pink-500 to-rose-650",
-    "thumbnailUrl": "https://www.mathplayground.com/images/use_your_head_300.png",
+    "thumbnailUrl": "https://images.crazygames.com/games/gulper-io/cover_16x9.png",
     "thumbnailFit": "cover"
   },
   {
     "id": "rodha",
-    "title": "Coordination",
+    "title": "Rodha bounce",
     "description": "Classic Rodha platformer where you hop across triggers, spikes, and rotating lines.",
     "iframeUrl": "https://www.crazygames.com/embed/rodha",
     "category": "Math Games",
@@ -87,12 +87,12 @@
     "instructions": "Press A/D or Left/Right Arrow keys to jump side to side. Avoid dangerous gears, triggers, and spiked wheels.",
     "credits": "Sebastian",
     "color": "from-blue-600 to-blue-800",
-    "thumbnailUrl": "https://www.mathplayground.com/images/puppet_hockey_300.png",
+    "thumbnailUrl": "https://i.ibb.co/Hp9R3mL4/Rodha-thumbnail.png",
     "thumbnailFit": "cover"
   },
   {
     "id": "plonky",
-    "title": "Focus and Precision",
+    "title": "Plonky Escape",
     "description": "Help the bouncing ball jump and slide to reach the security goal in Glitch.",
     "iframeUrl": "https://g.igroutka.ru/games/1278/hMRVJrwIQ8mYf6AS/d4d99b3a-cc26-41af-98df-da4c196e5308/index.html",
     "category": "Logic Lab",
@@ -100,12 +100,12 @@
     "instructions": "Bounce through static spikes, slide down moving walls, and time your jump perfectly.",
     "credits": "GameTornado",
     "color": "from-emerald-500 to-teal-600",
-    "thumbnailUrl": "https://www.mathplayground.com/images/glitch_300.png",
+    "thumbnailUrl": "https://i.ibb.co/Lz5Jm5L2/Plonky-Thumbnail.jpg",
     "thumbnailFit": "cover"
   },
   {
     "id": "stickman-hook",
-    "title": "Focus and Precision",
+    "title": "Stickman Hook",
     "description": "Control the swinging, bouncy ball and fly over platforms in Rodha Bounce.",
     "iframeUrl": "https://stickhook.io/game/stickman-hook/",
     "category": "Logic Lab",
@@ -113,12 +113,12 @@
     "instructions": "Tap left/right arrow buttons to swing and roll. Launch high off bounce pads to reach the flags.",
     "credits": "Madbox",
     "color": "from-purple-500 to-indigo-600",
-    "thumbnailUrl": "./src/assets/images/rodha_thumbnail_1780167008691.png",
+    "thumbnailUrl": "https://i.ibb.co/1f3fmdDY/Stickman-Hook.png",
     "thumbnailFit": "cover"
   },
   {
     "id": "moto-x3m-2",
-    "title": "Spatial Reasoning",
+    "title": "Moto X3M 2",
     "description": "Guide duck life runners across elevated logic panels and obstacles.",
     "iframeUrl": "https://html5.gamedistribution.com/rvvASMiM/5b0abd4c0faa4f5eb190a9a16d5a1b4c/index.html?gd_zone_config=eyJwYXJlbnRVUkwiOiJodHRwczovL21vdG94M20yLmlvLyIsInBhcmVudERvbWFpbiI6Im1vdG94M20yLmlvIiwidG9wRG9tYWluIjoibW90b3gzbTIuaW8iLCJoYXNJbXByZXNzaW9uIjpmYWxzZSwibG9hZGVyRW5hYmxlZCI6dHJ1ZSwiaG9zdCI6Imh0bWw1LmdhbWVkaXN0cmlidXRpb24uY29tIiwidmVyc2lvbiI6IjEuNS4xOCJ9",
     "category": "Brain Boosts",
@@ -126,12 +126,12 @@
     "instructions": "Steer and lean the motorcycle racer precisely over loops and ramps inside the logic course.",
     "credits": "Madpuffers",
     "color": "from-red-500 to-orange-600",
-    "thumbnailUrl": "https://www.mathplayground.com/images/duck_life_300.png",
+    "thumbnailUrl": "https://images.crazygames.com/games/moto-x3m-2/cover_16x9.png",
     "thumbnailFit": "cover"
   },
   {
     "id": "blacktop-police-chase",
-    "title": "Problem Solving",
+    "title": "Police Chase",
     "description": "Slide and feed the purple math monster to clear numbers in Monsterland.",
     "iframeUrl": "https://g.igroutka.ru/games/1108/QZXcUlJgwk2m9rxn/d8e221af-370e-451f-9f45-a747831936e4/index.html",
     "category": "Library",
@@ -139,12 +139,12 @@
     "instructions": "Maneuver, collect coins, and solve quick subtraction blocks before time runs empty.",
     "credits": "Steelpan Games",
     "color": "from-amber-600 to-red-650",
-    "thumbnailUrl": "https://www.mathplayground.com/images/monsterland_300.png",
+    "thumbnailUrl": "https://images.crazygames.com/games/city-police-chase/cover_16x9.png",
     "thumbnailFit": "cover"
   },
   {
     "id": "bomb-hopper",
-    "title": "Problem Solving",
+    "title": "BombHopper Space",
     "description": "Bounce and solve cheese path logic problems with agile ninja hamsters.",
     "iframeUrl": "https://bombhopper.io/",
     "category": "Library",
@@ -152,7 +152,7 @@
     "instructions": "Launch explosive cookies or cheese blocks to throw the hamster into the portal.",
     "credits": "BombHopper Team",
     "color": "from-indigo-500 to-pink-500",
-    "thumbnailUrl": "https://www.mathplayground.com/images/cheese_path_300.png",
+    "thumbnailUrl": "https://i.ibb.co/Ldj8bBjh/Bomb-hopper-io-Thumbnail.webp",
     "thumbnailFit": "cover"
   }
 ]

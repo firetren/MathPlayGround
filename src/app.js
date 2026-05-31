@@ -591,7 +591,7 @@ function renderActiveGrid() {
   if (!container) return;
 
   // Perform content filtration
-  const filtered = gamesData.filter(game => {
+  let filtered = gamesData.filter(game => {
     // Search matching filter
     const matchesSearch = 
       game.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -607,6 +607,12 @@ function renderActiveGrid() {
     
     return game.category === currentCategory;
   });
+
+  // Filter out games that are already displayed at the bottom under "Thinking Challenges" to prevent duplicates on default view
+  if (searchQuery === '' && currentCategory === 'All') {
+    const bottomGameIds = ['plonky', 'rodha', 'subway-surfers', 'drift-boss', 'stickman-hook', 'bomb-hopper'];
+    filtered = filtered.filter(game => !bottomGameIds.includes(game.id));
+  }
 
   // Statistics indicator counts
   const statText = document.getElementById('grid-result-statistics');
@@ -690,7 +696,7 @@ function renderActiveGrid() {
     
     card.innerHTML = `
       <!-- Thumbnail Cover Image Square -->
-      <div class="relative w-full aspect-square overflow-hidden rounded-2xl bg-slate-50 shadow-sm border border-slate-200/80 shrink-0">
+      <div class="relative w-full aspect-square overflow-hidden rounded-2xl bg-slate-100 shadow-sm border border-slate-200/60 shrink-0">
         <!-- Hover overlay controls -->
         <div class="absolute top-2 right-2 z-10 flex gap-1 bg-white/75 backdrop-blur-sm rounded-lg p-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-auto">
           <button
@@ -728,7 +734,7 @@ function renderActiveGrid() {
         </div>
         
         ${game.thumbnailUrl ? `
-          <img src="${escapeHTML(game.thumbnailUrl)}" alt="${escapeHTML(game.title)}" referrerpolicy="no-referrer" class="w-full h-full ${game.thumbnailFit === 'contain' ? 'object-contain bg-slate-900 p-1' : 'object-cover'} transition-transform duration-500" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <img src="${escapeHTML(game.thumbnailUrl)}" alt="${escapeHTML(game.title)}" referrerpolicy="no-referrer" class="w-full h-full ${game.thumbnailFit === 'contain' ? 'object-contain bg-slate-950 p-1' : 'object-cover'} transition-transform duration-500" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br ${gradientColor} opacity-90 hidden">
             ${getIconSVG(game.icon, 'w-8 h-8 text-white')}
           </div>
@@ -744,7 +750,7 @@ function renderActiveGrid() {
       </div>
 
       <!-- Title subtitle centered exactly matching the illustration -->
-      <h3 class="text-[13px] font-bold text-[#1b4cb4] group-hover:text-orange-500 group-hover:underline text-center mt-2 px-1 line-clamp-1 w-full leading-tight font-sans select-none">
+      <h3 class="text-[13px] font-bold text-[#1b4cb4] group-hover:text-amber-600 group-hover:underline text-center mt-2 px-1 line-clamp-1 w-full leading-tight font-sans select-none">
         ${escapeHTML(game.title)}
       </h3>
     `;
