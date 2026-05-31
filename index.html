@@ -1,0 +1,1076 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MathPlayground COPY - Unblocked Games Hub</title>
+    
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Responsive Tailwind CSS framework in raw browser CDN mode -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+              display: ['Space Grotesk', 'sans-serif'],
+              mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+            },
+            colors: {
+              sky: {
+                550: '#2b70e4',
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Custom Micro-Anims & Scrollbars config -->
+    <style>
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      /* Fun custom text outline for the authentic retro math logo style */
+      .math-logo-text {
+        -webkit-text-stroke: 1.5px #104ba1;
+        text-shadow: 2px 2px 0px #1c52b2;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-[#2b70e4] text-[#1e293b] font-sans selection:bg-[#0c7dec]/35 flex flex-col justify-between">
+
+    <!-- Overall Content Container Sheet matching Math Playground visual wrapper -->
+    <div class="w-full max-w-5xl mx-auto bg-[#fafafa] flex flex-col shadow-2xl min-h-screen border-x border-[#1a4ea3]/20">
+      
+      <!-- Top Primary Blue Navigation Bar -->
+      <header class="bg-[#104ba1] text-white py-3.5 px-4 sm:px-6 md:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 sticky top-0 z-40 shadow-md">
+        
+        <!-- Math Playground Logo -->
+        <div 
+          id="brand-header-logo-group"
+          class="flex items-center gap-3.5 cursor-pointer group select-none"
+        >
+          <!-- Stack of 3D nostalgic math blocks -->
+          <div class="relative w-12 h-12 flex-shrink-0 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+            <!-- Block 1 (Top Center) -->
+            <div class="absolute top-1 left-3 w-6 h-6 bg-[#eb5a00] rounded-md rotate-6 shadow-md border border-[#ff6d14] flex items-center justify-center text-white font-black text-xs select-none">10</div>
+            <!-- Block 2 (Bottom Left) -->
+            <div class="absolute bottom-1 left-1.5 w-6 h-6 bg-[#009b91] rounded-md -rotate-12 shadow-md border border-[#00bfae] flex items-center justify-center text-white font-black text-xs select-none">x</div>
+            <!-- Block 3 (Bottom Right) -->
+            <div class="absolute bottom-1 right-1.5 w-6 h-6 bg-[#f09a00] rounded-md rotate-12 shadow-md border border-[#ffb414] flex items-center justify-center text-white font-black text-xs select-none">+</div>
+          </div>
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-black tracking-tighter text-white font-display uppercase leading-none mt-0.5 select-none math-logo-text">
+              Math <span class="text-white">Playground</span>
+            </h1>
+            <p class="text-[10px] font-bold tracking-tight select-none mt-1 uppercase flex gap-1 font-mono leading-none">
+              <span class="text-[#f43f5e]">Give</span>
+              <span class="text-[#fb923c]">your</span>
+              <span class="text-[#facc15]">brain</span>
+              <span class="text-[#4ade80]">a</span>
+              <span class="text-[#38bdf8]">workout!</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Side Controls & Live Search Box -->
+        <div class="flex items-center gap-4 w-full sm:w-auto justify-end">
+          
+          <!-- Integrated Search Box in Navbar (extremely clean and matches blue style) -->
+          <div class="relative flex items-center w-full max-w-xs sm:max-w-48 md:max-w-64">
+            <svg class="absolute left-3 text-blue-300 w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input 
+              id="header-search-bar"
+              type="text" 
+              placeholder="Search catalog, authors..." 
+              class="w-full bg-[#0a3a80] border border-blue-900 rounded-lg py-1.5 pl-9 pr-4 text-xs font-medium placeholder-blue-300 text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:bg-[#0c4496] transition-all"
+            />
+          </div>
+
+          <!-- Account Sign In Button -->
+          <div class="flex items-center gap-2">
+            <button id="account-btn" class="flex items-center gap-2 bg-[#2b70e4] hover:bg-[#3d7fec] text-white border-2 border-white/80 rounded-lg px-4 py-1.5 font-bold font-sans cursor-pointer text-xs uppercase select-none shadow-sm transition-all hover:scale-[1.02]">
+              <span id="nav-label" class="tracking-wide">Sign In</span>
+            </button>
+            <button onclick="window.xyzOpenModal()" class="hidden md:inline-block bg-[#4c1d95] hover:bg-[#5b21b6] text-white border-2 border-white/60 rounded-lg px-4 py-1.5 font-bold font-sans cursor-pointer text-xs uppercase select-none shadow-sm transition-all hover:scale-[1.02]">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Platform Canvas Area styled on a light, responsive page container -->
+      <main class="flex-grow flex flex-col gap-6 py-6 px-4 sm:px-6 md:px-8 w-full bg-white">
+        
+        <!-- Screen A: Play Arena Gameplay Layout Viewport (Hidden unless game launched) -->
+        <div id="game-play-arena-layout" class="hidden flex flex-col gap-5 bg-white p-4 sm:p-6 md:p-8 rounded-2xl border border-slate-200">
+          
+          <!-- Header and Logo section mimicking Pic 2 -->
+          <div class="flex items-center justify-between w-full select-none pb-2 border-b-2 border-slate-100">
+            <div class="flex items-center gap-1">
+              <!-- Game Title logo with comic style and dots as in pic 2 -->
+              <h2 id="arena-header-headline-logo" class="text-3xl md:text-4xl font-extrabold tracking-tight text-[#dc2f41] capitalize font-sans leading-none pr-3">
+                RODHA...
+              </h2>
+            </div>
+            
+            <!-- Sleek Back/Close Navigation -->
+            <button
+              id="back-to-catalog-btn"
+              class="flex items-center gap-2 px-4 py-2 text-xs md:text-sm font-extrabold text-[#104ba1] hover:text-white bg-white hover:bg-[#104ba1] border-2 border-[#104ba1] rounded-xl cursor-pointer transition-all active:scale-95 shadow-sm"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+              <span>Back to Math Games</span>
+            </button>
+          </div>
+
+          <!-- Horizontal banner status strip containing yellow badge letter and text description -->
+          <div id="arena-status-banner-strip" class="w-full bg-[#1e48bc] text-white flex items-center gap-3 px-4 py-3 rounded-xl shadow-md border border-[#1b4cb4] select-none">
+            <!-- Big Yellow Block Letter -->
+            <span id="arena-banner-badge-letter" class="bg-yellow-400 text-[#1e48bc] font-black text-xl md:text-2xl px-3 py-1 rounded-lg shrink-0">
+              R
+            </span>
+            <!-- Prompt Banner Description text -->
+            <p id="arena-banner-instruction-prompt" class="font-black text-sm md:text-base uppercase tracking-normal leading-tight text-white">
+              REACH THE PORTAL SAFELY! CAN YOU HOP THROUGH ALL THE OBSTACLES?
+            </p>
+          </div>
+
+          <!-- Split viewport layout: left grades column rail, right/center viewport column -->
+          <div class="flex flex-col lg:flex-row gap-6 w-full items-start">
+            
+            <!-- Left Side-Rail: Circular select-link pills and Adapted Mind ad box -->
+            <div class="w-full lg:w-[200px] shrink-0 flex flex-col gap-3">
+              <div class="flex flex-col gap-2 select-none w-full">
+                <button onclick="window.handleGradeClickFromArena('pre-k')" class="w-full bg-[#13b567] hover:brightness-110 active:translate-y-0.5 text-white font-extrabold text-sm py-2.5 rounded-2xl border-b-4 border-green-700 shadow-sm text-center cursor-pointer transition-all">Pre-K</button>
+                <button onclick="window.handleGradeClickFromArena('kindergarten')" class="w-full bg-[#9c51e0] hover:brightness-110 active:translate-y-0.5 text-white font-extrabold text-sm py-2.5 rounded-2xl border-b-4 border-[#7b32c0] shadow-sm text-center cursor-pointer transition-all font-sans">Kindergarten</button>
+                <button onclick="window.handleGradeClickFromArena('1st')" class="w-full bg-[#2196f3] hover:brightness-110 active:translate-y-0.5 text-white font-extrabold text-sm py-2.5 rounded-2xl border-b-4 border-blue-700 shadow-sm text-center cursor-pointer transition-all font-sans">1st Grade</button>
+                <button onclick="window.handleGradeClickFromArena('2nd')" class="w-full bg-[#ffc107] hover:brightness-110 active:translate-y-0.5 text-white font-extrabold text-sm py-2.5 rounded-2xl border-b-4 border-amber-600 shadow-sm text-center cursor-pointer transition-all font-sans">2nd Grade</button>
+                <button onclick="window.handleGradeClickFromArena('3rd')" class="w-full bg-[#4caf50] hover:brightness-110 active:translate-y-0.5 text-white font-extrabold text-sm py-2.5 rounded-2xl border-b-4 border-green-700 shadow-sm text-center cursor-pointer transition-all font-sans">3rd Grade</button>
+                <button onclick="window.handleGradeClickFromArena('4th')" class="w-full bg-[#e91e63] hover:brightness-110 active:translate-y-0.5 text-white font-extrabold text-sm py-2.5 rounded-2xl border-b-4 border-rose-700 shadow-sm text-center cursor-pointer transition-all font-sans">4th Grade</button>
+                <button onclick="window.handleGradeClickFromArena('5th')" class="w-full bg-[#ff9800] hover:brightness-110 active:translate-y-0.5 text-white font-extrabold text-sm py-2.5 rounded-2xl border-b-4 border-orange-600 shadow-sm text-center cursor-pointer transition-all font-sans">5th Grade</button>
+                <button onclick="window.handleGradeClickFromArena('6th')" class="w-full bg-[#3f51b5] hover:brightness-110 active:translate-y-0.5 text-white font-extrabold text-sm py-2.5 rounded-2xl border-b-4 border-indigo-700 shadow-sm text-center cursor-pointer transition-all font-sans">6th Grade</button>
+                <button onclick="window.handleGradeClickFromArena('7th')" class="w-full bg-[#7e57c2] hover:brightness-110 active:translate-y-0.5 text-white font-extrabold text-sm py-2.5 rounded-2xl border-b-4 border-purple-700 shadow-sm text-center cursor-pointer transition-all font-sans">7th Grade</button>
+                <button onclick="window.handleGradeClickFromArena('8th')" class="w-full bg-[#00bcd4] hover:brightness-110 active:translate-y-0.5 text-white font-extrabold text-sm py-2.5 rounded-2xl border-b-4 border-cyan-700 shadow-sm text-center cursor-pointer transition-all font-sans">8th Grade</button>
+              </div>
+
+              <!-- Adapted Mind customized cute ad box identical to Pic 2 -->
+              <div class="border-2 border-dashed border-teal-200 bg-white rounded-2xl p-2.5 shadow-sm select-none text-center flex flex-col items-center">
+                <p class="text-[9px] font-bold text-slate-400 tracking-tight leading-none mb-1.5">Real learning can be really fun</p>
+                <div onclick="window.xyzOpenModal()" class="bg-[#e0f7fa] border border-teal-200 rounded-xl p-3 flex flex-col items-center w-full hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
+                  <!-- Custom inline SVG code of Adapted Mind purple smiling round block monster -->
+                  <svg class="w-11 h-11" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="44" fill="#9c27b0" />
+                    <!-- Eyes -->
+                    <circle cx="34" cy="40" r="11" fill="white" />
+                    <circle cx="34" cy="40" r="4.5" fill="black" />
+                    <circle cx="66" cy="40" r="11" fill="white" />
+                    <circle cx="66" cy="40" r="4.5" fill="black" />
+                    <!-- Mouth with teeth -->
+                    <path d="M 30 63 Q 50 82 70 63" stroke="white" stroke-width="5" stroke-linecap="round" fill="none" />
+                    <path d="M 38 64 L 41 71 L 44 64 Z" fill="white" />
+                    <path d="M 56 64 L 59 71 L 62 64 Z" fill="white" />
+                  </svg>
+                  <h4 class="font-black text-[#00695c] text-xs mt-1.5 tracking-tight leading-none">Adapted Mind</h4>
+                </div>
+                <button id="report-ad-btn" onclick="alert('Thank you for reporting! This advertisement has been submitted for verification.')" class="text-[8px] font-bold text-slate-400 hover:underline hover:text-slate-600 transition-colors mt-2 cursor-pointer leading-none">Report Ad</button>
+              </div>
+            </div>
+
+            <!-- Right/Center viewport layout: frame player and center dynamic desc caption -->
+            <div class="flex-grow flex flex-col gap-4 w-full items-center">
+              <div class="w-full">
+                <!-- Sandbox frame container with blue border replicating the screenshot -->
+                <div id="play-arena-frame-viewport-wrapper" class="relative w-full aspect-[16/10] bg-slate-900 rounded-2xl border-4 border-[#1b4cb4] shadow-md overflow-hidden">
+                  <div id="play-arena-frame-viewport-container" class="w-full h-full"></div>
+                </div>
+              </div>
+
+              <!-- Sleek Controls like Fullscreen buttons -->
+              <div class="flex items-center gap-3">
+                <button id="arena-fullscreen-btn" class="bg-[#0e7bec] hover:bg-[#0062cc] active:scale-95 transition-all text-white font-extrabold text-xs md:text-sm py-2 px-6 rounded-lg shadow border-b-4 border-blue-950 flex items-center gap-1 cursor-pointer">
+                  <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                  <span>View Fullscreen</span>
+                </button>
+                <button id="arena-reload-btn" class="bg-slate-100 hover:bg-slate-200 text-slate-705 text-xs font-bold py-2.5 px-4 rounded-lg border border-slate-300 flex items-center gap-1 cursor-pointer">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8m0 0V4m0 4h4m14 4a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16m0 0v4m0-4h4"/></svg>
+                  <span>Restart</span>
+                </button>
+              </div>
+
+              <!-- Dyn centered descriptions colored blue matching Pic 2 footer -->
+              <div class="text-center px-4 max-w-xl">
+                <p id="arena-game-footer-quote" class="text-xs md:text-sm font-bold text-[#1b4cb4] leading-relaxed font-sans select-none">
+                  At each level, the goal is to reach the portal safely. Can you pass all 60 levels?
+                </p>
+              </div>
+
+              <!-- Warnings and original metadata fields inside a neat hidden/collapsible section for developer use -->
+              <div class="hidden">
+                <span id="arena-game-label"></span>
+                <span id="arena-game-category"></span>
+                <span id="arena-game-credits-name"></span>
+                <div id="arena-game-icon-container"></div>
+                <div id="arena-favorite-btn"></div>
+                <div id="arena-theater-btn"></div>
+                <div id="arena-game-instructions"></div>
+                <span id="arena-game-user-badge"></span>
+                <div id="arena-saves-warning-box">
+                  <span id="arena-saves-warning-content"></span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen B: Dynamic Homescreen Browser View -->
+        <div id="homescreen-browser-layout" class="flex flex-col gap-6 animate-fade-in text-[#214ca6]">
+          
+          <!-- Mobile Search (Hidden except mobile viewports) -->
+          <div class="relative flex items-center w-full md:hidden shrink-0 mt-1">
+            <svg class="absolute left-4 text-slate-400 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input 
+              id="header-search-bar-mobile"
+              type="text" 
+              placeholder="Search unblocked catalog..." 
+              class="w-full bg-slate-50 border border-slate-350 rounded-full py-2.5 pl-11 pr-6 focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-xs text-slate-705 placeholder-slate-400 transition-all"
+            />
+          </div>
+
+          <!-- 1. Top Colorful Category Tabs -->
+          <div class="flex flex-col gap-4 shrink-0 px-2">
+            <nav id="categories-tab-bar" class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+              <button 
+                data-category="All" 
+                class="bg-[#0c7dec] text-white border-b-4 border-blue-700 font-bold hover:brightness-110 active:translate-y-0.5 rounded-xl py-3 px-1 transition-all text-xs sm:text-sm shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
+              >
+                Math Games
+              </button>
+              <button 
+                data-category="Simulation" 
+                class="bg-[#e75302] text-white border-b-4 border-orange-700 font-bold hover:brightness-110 active:translate-y-0.5 rounded-xl py-3 px-1 transition-all text-xs sm:text-sm shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
+              >
+                Math Stories
+              </button>
+              <button 
+                data-category="Car games" 
+                class="bg-[#009b91] text-white border-b-4 border-teal-700 font-bold hover:brightness-110 active:translate-y-0.5 rounded-xl py-3 px-1 transition-all text-xs sm:text-sm shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
+              >
+                Logic Lab
+              </button>
+              <button 
+                data-category="Arcade" 
+                class="bg-[#746ef7] text-white border-b-4 border-indigo-700 font-bold hover:brightness-110 active:translate-y-0.5 rounded-xl py-3 px-1 transition-all text-xs sm:text-sm shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
+              >
+                Brain Boosts
+              </button>
+              <button 
+                data-category="Favorites" 
+                class="bg-[#cd2a3d] text-white border-b-4 border-rose-800 font-bold hover:brightness-110 active:translate-y-0.5 rounded-xl py-3 px-1 transition-all text-xs sm:text-sm shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans col-span-2 sm:col-span-1"
+              >
+                Library / Pin Game
+                <span id="fav-category-badge" class="hidden font-mono text-[9px] px-1.5 py-0.5 rounded-full bg-white/20 ml-1">0</span>
+              </button>
+
+              <!-- Optional hidden element for custom filter triggers to prevent DOM error -->
+              <button data-category="Custom" class="hidden">Custom</button>
+            </nav>
+
+            <!-- 2. Circular Grade Selector Pills row matching design -->
+            <div class="flex items-center justify-center gap-1.5 sm:gap-2.5 flex-wrap py-1 border-t border-slate-100 mt-1 select-none">
+              <button onclick="document.getElementById('header-search-bar').value='pre-k'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#9c51e0] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">K</button>
+              <button onclick="document.getElementById('header-search-bar').value='1st'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#0099ab] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">1</button>
+              <button onclick="document.getElementById('header-search-bar').value='2nd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#5873f4] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">2</button>
+              <button onclick="document.getElementById('header-search-bar').value='3rd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#dc2f41] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">3</button>
+              <button onclick="document.getElementById('header-search-bar').value='4th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#5b6488] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">4</button>
+              <button onclick="document.getElementById('header-search-bar').value='5th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#f06105] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">5</button>
+              <button onclick="document.getElementById('header-search-bar').value='6th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#057df0] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">6+</button>
+            </div>
+          </div>
+
+          <!-- 3. Header Intro Title and Description in rich blue colors -->
+          <div class="text-center px-4 max-w-3xl mx-auto flex flex-col gap-2 shrink-0">
+            <h2 class="text-xl sm:text-2xl font-black text-[#1b4392] tracking-normal font-display select-none">
+              Brain Boosts: Quick Challenges to Reset and Refocus
+            </h2>
+            <p class="text-[13px] sm:text-sm text-[#214ca6] leading-relaxed font-sans max-w-2xl select-text">
+              Recharge with quick activities and puzzles that reset your focus and spark creative thinking. Each activity strengthens attention, persistence, and problem-solving. Whether you're between lessons or just want a quick challenge, these short brain boosts help you reset so you can jump back into your next math mission.
+            </p>
+          </div>
+
+          <!-- Hidden components required for legacy JS updates to avoid throwing -->
+          <div class="hidden">
+            <span id="stats-total-count">0</span>
+            <span id="stats-fav-count">0</span>
+            <div id="stats-custom-count">0</div>
+            <div id="custom-category-badge">0</div>
+            <div id="recently-played-section"></div>
+            <div id="recently-played-list-container"></div>
+            <div id="featured-game-bg-image"></div>
+            <div id="featured-game-category"></div>
+            <div id="featured-game-title"></div>
+            <div id="featured-game-desc"></div>
+            <button id="featured-play-btn"></button>
+            <button id="bento-load-2048-btn"></button>
+            <button id="clear-recents-btn"></button>
+            <button id="cta-add-custom-game-nav"></button>
+            <button id="cta-hero-add-custom"></button>
+            <button id="bento-import-trigger"></button>
+          </div>
+
+          <!-- 4. "Adapted Mind" Row Banner (Faithful to photo) -->
+          <div class="text-center font-mono text-[10px] text-slate-400 select-none tracking-normal">
+            Advertisement | <span onclick="window.xyzOpenModal()" class="cursor-pointer hover:underline hover:text-slate-600 font-bold">Go Ad-Free!</span>
+          </div>
+          <div class="bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-200/65 rounded-2xl p-4 flex flex-col md:flex-row items-center gap-5 shrink-0 max-w-4xl mx-auto w-full shadow-sm">
+            <!-- Monster image and title placeholder -->
+            <div class="flex items-center gap-3.5 select-none shrink-0 border-b md:border-b-0 md:border-r border-teal-200 pb-3 md:pb-0 md:pr-4 w-full md:w-auto justify-center">
+              <div class="w-12 h-12 bg-[#8bc34a] rounded-2xl flex items-center justify-center font-black text-2xl text-white shadow-md border-2 border-white transform rotate-3">
+                🤖
+              </div>
+              <div class="text-left">
+                <h4 class="font-extrabold text-[#007a72] text-sm leading-tight font-display">Adapted Mind</h4>
+                <p class="text-[10px] text-teal-600 leading-none mt-0.5">Custom Lessons</p>
+              </div>
+            </div>
+            <!-- Pill links -->
+            <div class="flex flex-wrap items-center justify-center gap-1.5 flex-1 text-xs select-none">
+              <button onclick="document.getElementById('header-search-bar').value='pre-k'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#4caf50] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-emerald-600 cursor-pointer">Pre-K</button>
+              <button onclick="document.getElementById('header-search-bar').value='kindergarten'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#e91e63] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-rose-600 cursor-pointer">Kindergarten</button>
+              <button onclick="document.getElementById('header-search-bar').value='1st'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#2196f3] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-blue-600 cursor-pointer">1st Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='2nd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#ff9800] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-amber-600 cursor-pointer">2nd Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='3rd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#e51c23] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-red-700 cursor-pointer">3rd Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='4th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#f44336] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-red-600 cursor-pointer">4th Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='5th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#e91e63] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-rose-600 cursor-pointer">5th Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='6th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#f44336] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-red-600 cursor-pointer">6th Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='7th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#f44336] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-red-600 cursor-pointer">7th Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='8th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#f44336] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-red-600 cursor-pointer">8th Grade</button>
+            </div>
+          </div>
+
+          <!-- 5. Featured Challenges Header and dynamic games shelf -->
+          <div class="flex flex-col gap-2 mt-4">
+            
+            <!-- Grid Title with pink star & outline -->
+            <div class="flex items-center justify-between border-b-2 border-[#e62b7a]/20 pb-2.5 px-1.5 select-none">
+              <h3 class="text-lg sm:text-xl font-extrabold text-[#e62b7a] tracking-normal flex items-center gap-2">
+                <span class="text-xl">★</span> Featured Challenges
+              </h3>
+            </div>
+
+            <!-- Crisp, light themed grid representing our unblocked games catalog -->
+            <div id="games-grid-layout" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 sm:gap-5 py-4 animate-fade-in bg-white min-h-[300px]"></div>
+
+            <!-- Fail search empty trigger card -->
+            <div id="grid-empty-state" class="hidden py-12 flex flex-col items-center justify-center text-center max-w-md mx-auto">
+              <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mb-4">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>
+              </div>
+              <h3 class="text-sm font-bold text-slate-800">No Matching Games Found</h3>
+              <p id="empty-state-description" class="text-xs text-slate-500 mt-1 font-sans leading-relaxed"></p>
+              <button id="empty-state-action-btn" class="mt-4 px-4 py-2 text-xs font-bold bg-[#2b70e4] text-white rounded-lg transition-all cursor-pointer"></button>
+            </div>
+          </div>
+
+          <!-- 6. Classroom Plan Banner (Beautiful visual component identical to image) -->
+          <div class="text-center font-mono text-[10px] text-slate-400 select-none tracking-normal mt-4">
+            Advertisement | <span onclick="window.xyzOpenModal()" class="cursor-pointer hover:underline hover:text-slate-600 font-bold">Go Ad-Free!</span>
+          </div>
+          <div class="bg-[#054ba4] text-white rounded-2xl p-5 md:p-6 flex flex-col md:flex-row items-center justify-between gap-6 shrink-0 max-w-4xl mx-auto w-full shadow-lg border-2 border-[#1c62ba]">
+            
+            <div class="flex items-center gap-4 text-left">
+              <!-- Left side Blocks Logo inside banner -->
+              <div class="w-14 h-14 shrink-0 bg-blue-900/40 rounded-xl flex items-center justify-center shadow-md relative select-none">
+                <div class="absolute -top-1 w-6 h-6 bg-orange-500 rotate-6 rounded shadow"></div>
+                <div class="absolute -bottom-1 -left-1 w-6 h-6 bg-teal-500 -rotate-12 rounded shadow"></div>
+                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-yellow-400 rotate-12 rounded shadow"></div>
+                <span class="text-[9px] font-black absolute inset-0 flex items-center justify-center">10</span>
+              </div>
+              
+              <div>
+                <span class="bg-[#ea7317] text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider font-mono shadow-sm">New</span>
+                <h3 class="text-lg sm:text-xl font-extrabold mt-1 tracking-tight font-display">Focused Classroom Plan</h3>
+                
+                <ul class="text-xs text-blue-100 space-y-1.5 mt-3 leading-none font-bold">
+                  <li class="flex items-center gap-2">
+                    <span class="text-[#4ade80]">✔</span> Teacher-curated learning games
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-[#ec4899]">✔</span> Math and problem solving
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-[#38bdf8]">✔</span> No ads or distractions
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Learn More visual trigger -->
+            <button onclick="window.xyzOpenModal()" class="bg-[#ea7317] hover:bg-[#ff8629] text-white font-extrabold text-sm py-3 px-8 rounded-xl transition-all shadow-md transform hover:scale-105 active:scale-95 cursor-pointer uppercase tracking-tight shrink-0">
+              Learn More
+            </button>
+          </div>
+
+          <!-- 7. Second Section Shelf: Thinking Challenges (Faithful to photo) -->
+          <div class="flex flex-col gap-2 mt-4 select-none">
+            <div class="flex items-center justify-between border-b-2 border-blue-600/20 pb-2.5 px-1.5">
+              <h3 class="text-lg sm:text-xl font-extrabold text-blue-700 tracking-normal flex items-center gap-2">
+                <span class="text-xl">★</span> Thinking Challenges
+              </h3>
+              <!-- More Thinking triggers -->
+              <button onclick="document.getElementById('categories-tab-bar').querySelectorAll('button[data-category]')[2].click()" class="bg-[#104ba1] hover:bg-[#205cb1] text-white text-xs font-black px-4 py-1.5 rounded-lg shadow-sm cursor-pointer transition-colors">
+                More Thinking ►
+              </button>
+            </div>
+
+            <!-- Static gorgeous Row of 6 customized catalog games exactly as illustrated -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 sm:gap-5 py-4">
+              
+              <!-- Card 1 -->
+              <div onclick="window.playGame('plonky')" class="group cursor-pointer flex flex-col items-center w-full transition-all duration-300 transform hover:scale-[1.04]">
+                <div class="relative w-full aspect-square overflow-hidden rounded-2xl bg-slate-100 shadow-sm border border-slate-200/60 shrink-0">
+                  <img src="https://i.ibb.co/Lz5Jm5L2/Plonky-Thumbnail.jpg" alt="Plonky" class="w-full h-full object-cover" />
+                </div>
+                <h3 class="text-[13px] font-bold text-[#1b4cb4] group-hover:text-amber-600 group-hover:underline text-center mt-2 px-1 line-clamp-1 w-full leading-tight font-sans">
+                  Plonky Escape
+                </h3>
+              </div>
+
+              <!-- Card 2 -->
+              <div onclick="window.playGame('rodha')" class="group cursor-pointer flex flex-col items-center w-full transition-all duration-300 transform hover:scale-[1.04]">
+                <div class="relative w-full aspect-square overflow-hidden rounded-2xl bg-slate-100 shadow-sm border border-slate-200/60 shrink-0">
+                  <img src="https://i.ibb.co/Hp9R3mL4/Rodha-thumbnail.png" alt="Rodha" class="w-full h-full object-cover" />
+                </div>
+                <h3 class="text-[13px] font-bold text-[#1b4cb4] group-hover:text-amber-600 group-hover:underline text-center mt-2 px-1 line-clamp-1 w-full leading-tight font-sans">
+                  Rodha bounce
+                </h3>
+              </div>
+
+              <!-- Card 3 -->
+              <div onclick="window.playGame('subway-surfers')" class="group cursor-pointer flex flex-col items-center w-full transition-all duration-300 transform hover:scale-[1.04]">
+                <div class="relative w-full aspect-square overflow-hidden rounded-2xl bg-slate-100 shadow-sm border border-slate-200/60 shrink-0">
+                  <img src="https://i.ibb.co/PG23ThWR/Subway-Surfersthumb-m240x144.jpg" alt="Subway Surfers" class="w-full h-full object-cover" />
+                </div>
+                <h3 class="text-[13px] font-bold text-[#1b4cb4] group-hover:text-amber-600 group-hover:underline text-center mt-2 px-1 line-clamp-1 w-full leading-tight font-sans">
+                  Subway Runner
+                </h3>
+              </div>
+
+              <!-- Card 4 -->
+              <div onclick="window.playGame('drift-boss')" class="group cursor-pointer flex flex-col items-center w-full transition-all duration-300 transform hover:scale-[1.04]">
+                <div class="relative w-full aspect-square overflow-hidden rounded-2xl bg-slate-100 shadow-sm border border-slate-200/60 shrink-0">
+                  <img src="https://i.ibb.co/4QfwJ3d/Drift-Boss-Thumb-Nail.webp" alt="Drift Boss" class="w-full h-full object-contain p-1 bg-slate-950" />
+                </div>
+                <h3 class="text-[13px] font-bold text-[#1b4cb4] group-hover:text-amber-600 group-hover:underline text-center mt-2 px-1 line-clamp-1 w-full leading-tight font-sans">
+                  Drift Boss Maze
+                </h3>
+              </div>
+
+              <!-- Card 5 -->
+              <div onclick="window.playGame('stickman-hook')" class="group cursor-pointer flex flex-col items-center w-full transition-all duration-300 transform hover:scale-[1.04]">
+                <div class="relative w-full aspect-square overflow-hidden rounded-2xl bg-slate-100 shadow-sm border border-slate-200/60 shrink-0">
+                  <img src="https://i.ibb.co/1f3fmdDY/Stickman-Hook.png" alt="Stickman Hook" class="w-full h-full object-cover" />
+                </div>
+                <h3 class="text-[13px] font-bold text-[#1b4cb4] group-hover:text-amber-600 group-hover:underline text-center mt-2 px-1 line-clamp-1 w-full leading-tight font-sans">
+                  Stickman Hook
+                </h3>
+              </div>
+
+              <!-- Card 6 -->
+              <div onclick="window.playGame('bomb-hopper')" class="group cursor-pointer flex flex-col items-center w-full transition-all duration-300 transform hover:scale-[1.04]">
+                <div class="relative w-full aspect-square overflow-hidden rounded-2xl bg-slate-100 shadow-sm border border-slate-200/60 shrink-0">
+                  <img src="https://i.ibb.co/Ldj8bBjh/Bomb-hopper-io-Thumbnail.webp" alt="Bomb Hopper" class="w-full h-full object-cover" />
+                </div>
+                <h3 class="text-[13px] font-bold text-[#1b4cb4] group-hover:text-amber-600 group-hover:underline text-center mt-2 px-1 line-clamp-1 w-full leading-tight font-sans">
+                  BombHopper Space
+                </h3>
+              </div>
+
+            </div>
+          </div>
+          
+        </div>
+
+      </main>
+
+      <!-- Platform clean footer mimicking a simple playground grid list links line -->
+      <footer class="border-t border-slate-200 bg-slate-50 py-5 px-6 sm:px-8 mt-auto flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-mono gap-4 select-none">
+        <div>&copy; 2026 MathPlayground COPY • UNBLOCKED CHANNELS</div>
+        
+        <div class="flex flex-wrap gap-4 items-center justify-center">
+          <span id="trigger-sync-modal" class="hover:text-blue-650 transition-all cursor-pointer border border-slate-300 px-3 py-1 rounded-lg bg-white font-bold inline-flex items-center gap-1.5 active:scale-95">
+            <span class="w-1.5 h-1.5 bg-[#eb5a00] rounded-full animate-pulse"></span>
+            Sync Codebase
+          </span>
+          <span id="trigger-reset-all" class="hover:text-rose-650 transition-all cursor-pointer border border-slate-300 px-3 py-1 rounded-lg bg-white font-bold inline-flex items-center gap-1.5 active:scale-95">
+            <span class="w-1.5 h-1.5 bg-[#dc2f41] rounded-full"></span>
+            Reset App Cache
+          </span>
+          <span class="cursor-help hover:text-slate-700 hidden sm:inline">Offline Sandbox Browser Layer</span>
+        </div>
+      </footer>
+
+    </div>
+
+    <!-- Modals Layout Overlays -->
+    
+    <!-- 1. Add Custom Game Modal popup wrapper (Hidden by default) -->
+    <div id="add-game-modal-ambient" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+      <div class="w-full max-w-lg bg-white border border-slate-300 rounded-3xl shadow-2xl overflow-hidden animate-fade-in text-slate-800">
+        
+        <!-- Modal Heading titles -->
+        <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+          <div class="flex items-center gap-2">
+            <div class="p-1.5 rounded-lg bg-[#eb5a00]/10 text-[#eb5a00]">
+              ★
+            </div>
+            <div>
+              <h3 class="text-base font-extrabold text-slate-900 font-display">Add Unblocked Game Entry</h3>
+              <p class="text-xs text-slate-500">Insert custom unblocked links into your browser shelf</p>
+            </div>
+          </div>
+          <button id="close-modal-btn" class="p-1 rounded-md hover:bg-slate-200 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer">
+            ✕
+          </button>
+        </div>
+
+        <div id="add-game-success-message" class="hidden py-12 flex flex-col items-center justify-center text-center bg-emerald-50">
+          <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-3">
+            ✔
+          </div>
+          <h4 class="text-base font-bold text-slate-900">Game Saved Successfully!</h4>
+          <p class="text-xs text-slate-500 mt-1">Added to your local playground workspace catalog.</p>
+        </div>
+
+        <!-- Add Custom Game Form structure -->
+        <form id="custom-game-add-form" class="p-6 flex flex-col gap-4 max-h-[70vh] overflow-y-auto">
+          <div id="form-error-banner" class="hidden bg-red-50 border border-red-200 rounded-xl p-3 text-xs text-red-700 font-mono"></div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Game Title *</label>
+            <input id="input-game-title" type="text" placeholder="e.g. Retro Platformer Challenge" class="w-full bg-[#f8fafc] border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#2b70e4] transition-colors" required />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="flex flex-col gap-1">
+              <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Category *</label>
+              <select id="select-game-category" class="w-full bg-[#f8fafc] border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#2b70e4] transition-colors cursor-pointer text-slate-705">
+                <option value="Arcade">Arcade Games</option>
+                <option value="Puzzle">Puzzle Practice</option>
+                <option value="Skill">Skill Boosters</option>
+                <option value="Retro">Retro Arcade</option>
+              </select>
+            </div>
+            <div class="flex flex-col gap-1">
+              <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Credits/Author</label>
+              <input id="input-game-credits" type="text" placeholder="e.g. Open Source Creator" class="w-full bg-[#f8fafc] border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#2b70e4] transition-colors" />
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Short Description *</label>
+            <textarea id="input-game-desc" placeholder="Briefly describe the story or puzzle tasks in 1-2 lines..." rows="2" class="w-full bg-[#f8fafc] border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#2b70e4] transition-all resize-none" required></textarea>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Iframe Embed URL / Website game link *</label>
+            <input id="input-game-url" type="url" placeholder="https://example.com/game" class="w-full bg-[#f8fafc] border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#2b70e4] transition-colors" required />
+            <span class="text-[9px] text-slate-400 mt-1 leading-relaxed">
+              Provides secure container embedding compatibility. Absolute unblocked links or direct game files are ideal!
+            </span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Card Thumbnail cover photo URL</label>
+            <input id="input-game-thumbnail" type="url" placeholder="https://images.unsplash.com/photo-... or custom path. Optional." class="w-full bg-[#f8fafc] border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#2b70e4] transition-colors" />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Instructions / Controls</label>
+            <textarea id="input-game-instructions" placeholder="e.g. Click the sandbox panel to steer. Keyboard arrows or WASD to jump." rows="2" class="w-full bg-[#f8fafc] border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#2b70e4] transition-all resize-none"></textarea>
+          </div>
+
+          <div class="flex items-center justify-end gap-3 border-t border-slate-200 pt-4 mt-2">
+            <button id="form-cancel-btn" type="button" class="px-4 py-2 text-xs font-bold uppercase text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all cursor-pointer">Cancel</button>
+            <button id="form-submit-btn" type="submit" class="px-5 py-2 text-xs font-bold uppercase text-white bg-[#eb5a00] hover:bg-[#ff6d14] rounded-xl transition-all cursor-pointer shadow-sm">Add To shelf</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 2. Edit Thumbnail card cover modal (Hidden by default) -->
+    <div id="edit-thumbnail-modal-ambient" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+      <div class="w-full max-w-md bg-white border border-slate-300 rounded-3xl shadow-2xl overflow-hidden animate-fade-in text-slate-800">
+        
+        <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+          <div class="flex items-center gap-2">
+            <div class="p-1.5 rounded-lg bg-blue-50 text-blue-600">
+              🖼
+            </div>
+            <div>
+              <h3 class="text-base font-extrabold text-slate-900 font-display">Edit Game Cover</h3>
+              <p id="edit-thumbnail-subtitle" class="text-xs text-slate-500">Pick custom cover art for any unblocked game</p>
+            </div>
+          </div>
+          <button id="close-edit-thumbnail-modal-btn" class="p-1 rounded-md hover:bg-slate-200 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer">
+            ✕
+          </button>
+        </div>
+
+        <form id="edit-thumbnail-form" class="p-6 flex flex-col gap-4">
+          
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Image Preview</label>
+            <div class="relative w-full h-32 rounded-xl overflow-hidden bg-slate-100 border border-slate-305 flex items-center justify-center">
+              <img id="edit-thumbnail-preview-img" src="" alt="Live cover preview" referrerpolicy="no-referrer" class="w-full h-full object-cover hidden" />
+              <div id="edit-thumbnail-preview-fallback" class="absolute inset-0 flex flex-col items-center justify-center text-xs text-slate-400 p-4 text-center select-none font-mono">
+                No custom cover art set yet
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Cover Image URL</label>
+            <input id="input-edit-thumbnail-url" type="url" placeholder="https://example.com/image.png" class="w-full bg-[#f8fafc] border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#2b70e4] transition-colors" />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Image Scaling Fit</label>
+            <select id="select-edit-thumbnail-fit" class="w-full bg-[#f8fafc] border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#2b70e4] transition-colors cursor-pointer text-slate-705">
+              <option value="cover">Fill completely (Recommended crop)</option>
+              <option value="contain">Scale to fit (Show entire photo)</option>
+            </select>
+          </div>
+
+          <div class="flex items-center justify-between border-t border-slate-200 pt-4 mt-2">
+            <button id="edit-thumbnail-reset-btn" type="button" class="px-3 py-2 text-xs font-bold uppercase text-red-650 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-200 cursor-pointer">
+              Restore Default
+            </button>
+            <div class="flex gap-2">
+              <button id="edit-thumbnail-cancel-btn" type="button" class="px-4 py-2 text-xs font-bold uppercase text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors cursor-pointer">Cancel</button>
+              <button id="edit-thumbnail-submit-btn" type="submit" class="px-5 py-2 text-xs font-bold uppercase text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-all cursor-pointer shadow-sm">Save Cover</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 3. Dynamic User Account Authentication Portal Modal Overlay (Hidden by default) -->
+    <div id="xyz-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+      <div id="xyz-modal" class="w-full max-w-sm bg-white border border-slate-300 rounded-3xl shadow-2xl overflow-hidden animate-fade-in text-slate-800">
+        
+        <!-- Tab navigation header -->
+        <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">👤</span>
+            <div>
+              <h3 id="xyz-modal-title" class="text-base font-extrabold text-slate-900 font-display">Account Hub</h3>
+              <p id="xyz-modal-subtitle" class="text-xs text-slate-500">Enable cloud syncing of game records</p>
+            </div>
+          </div>
+          <button id="xyz-close" onclick="window.xyzCloseModal()" class="p-1 rounded-md hover:bg-slate-205 text-slate-550 hover:text-slate-805 transition-colors cursor-pointer font-bold">
+            ✕
+          </button>
+        </div>
+
+        <!-- Inputs Form Tab area -->
+        <div id="auth-forms" class="p-6 flex flex-col gap-4">
+          <div class="xyz-tabs flex p-1 bg-slate-100 rounded-xl border border-slate-200">
+            <button id="xyz-tab-login" class="flex-1 py-1 text-xs font-bold uppercase text-slate-800 bg-white rounded-lg transition-all shadow-sm" onclick="xyzTab('login')">Sign In</button>
+            <button id="xyz-tab-register" class="flex-1 py-1 text-xs font-bold uppercase text-slate-500 hover:text-slate-800 transition-all" onclick="xyzTab('register')">Register</button>
+          </div>
+
+          <!-- Alert container -->
+          <div id="xyz-err" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700 select-text max-h-24 overflow-y-auto leading-relaxed"></div>
+
+          <!-- Email login form -->
+          <div id="xyz-login" class="flex flex-col gap-3.5">
+            <div class="flex flex-col gap-1">
+              <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Email Address</label>
+              <input type="email" id="li-email" placeholder="you@example.com" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500 transition-colors" />
+            </div>
+            <div class="flex flex-col gap-1">
+              <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Account Password</label>
+              <input type="password" id="li-pass" placeholder="••••••••" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500 transition-colors" />
+            </div>
+            <button id="xyz-login-btn" onclick="xyzLogin()" class="w-full py-2.5 text-xs font-bold uppercase text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-sm transition-all cursor-pointer mt-1">Sign In</button>
+          </div>
+
+          <!-- Email register form -->
+          <div id="xyz-register" class="hidden flex flex-col gap-3.5">
+            <div class="flex flex-col gap-1">
+              <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Playground Nickname</label>
+              <input type="text" id="re-name" placeholder="SuperGamer" maxlength="20" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500 transition-colors" />
+            </div>
+            <div class="flex flex-col gap-1">
+              <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Email Address</label>
+              <input type="email" id="re-email" placeholder="you@example.com" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500 transition-colors" />
+            </div>
+            <div class="flex flex-col gap-1">
+              <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Password</label>
+              <input type="password" id="re-pass" placeholder="At least 6 characters" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500 transition-colors" />
+            </div>
+            <button id="xyz-register-btn" onclick="xyzRegister()" class="w-full py-2.5 text-xs font-bold uppercase text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-sm transition-all cursor-pointer mt-1">Create Account</button>
+          </div>
+
+          <div class="flex items-center my-1 select-none font-mono">
+            <div class="flex-grow border-t border-slate-200"></div>
+            <span class="px-2 text-[9px] text-slate-400 uppercase">Or Google Access</span>
+            <div class="flex-grow border-t border-slate-200"></div>
+          </div>
+
+          <button onclick="xyzGoogleSignIn()" class="w-full py-2.5 text-xs font-bold uppercase text-slate-700 hover:text-slate-900 bg-[#f8fafc] border border-slate-300 hover:bg-slate-50 rounded-xl hover:scale-[1.01] transition-all cursor-pointer flex items-center justify-center gap-2 select-none shadow-sm">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/></svg>
+            Sign In with Google
+          </button>
+        </div>
+
+        <!-- Signed in profile status page -->
+        <div id="profile-view" class="hidden p-6 flex flex-col gap-4">
+          <div class="flex items-center gap-3.5 bg-slate-50 border border-slate-200 rounded-2xl p-4">
+            <div id="pv-av" class="w-11 h-11 rounded-full border border-blue-400 flex items-center justify-center font-black text-sm text-white shadow-sm select-none">
+              ?
+            </div>
+            <div class="flex-grow min-w-0 text-left">
+              <h4 id="pv-name" class="font-extrabold text-slate-900 text-sm truncate">Gamer</h4>
+              <p id="pv-email" class="text-xs text-slate-500 font-mono tracking-tight truncate mt-0.5">user@mail.com</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 font-sans">
+            <div class="bg-slate-50 border border-slate-205 rounded-2xl p-3.5 text-center transition-all hover:scale-[1.02]">
+              <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest block leading-none">Games Launched</span>
+              <span id="pv-played" class="text-2xl font-black text-blue-600 tracking-tight block mt-1.5 leading-none">0</span>
+            </div>
+            <div class="bg-slate-50 border border-slate-205 rounded-2xl p-3.5 text-center transition-all hover:scale-[1.02]">
+              <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wide block leading-none">Member Since</span>
+              <span id="pv-since" class="text-xs font-black text-emerald-600 block uppercase font-mono mt-2.5">May 2026</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2 border-t border-slate-200 pt-4 mt-1">
+            <button onclick="window.xyzCloseModal()" class="w-full py-2 text-xs font-bold uppercase text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors cursor-pointer">Continue Playing</button>
+            <button onclick="xyzLogout()" class="w-full py-2 text-xs font-bold uppercase text-red-600 border border-slate-200 hover:bg-red-50 rounded-xl transition-all cursor-pointer">Sign Out</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 4. Codebase Sync Dialog Popup (Hidden by default) -->
+    <div id="sync-codebase-modal-ambient" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+      <div class="w-full max-w-lg bg-white border border-slate-300 rounded-3xl shadow-2xl overflow-hidden animate-fade-in text-slate-800">
+        
+        <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">⚙</span>
+            <div>
+              <h3 class="text-base font-extrabold text-slate-900 font-display">Codebase Sync Assistant</h3>
+              <p class="text-xs text-slate-500 font-sans">Save modifications permanently inside games.json</p>
+            </div>
+          </div>
+          <button id="close-sync-modal-btn" class="p-1 rounded-md hover:bg-slate-200 text-slate-550 hover:text-slate-805 transition-colors cursor-pointer font-bold">
+            ✕
+          </button>
+        </div>
+
+        <div class="p-6 flex flex-col gap-4">
+          <p class="text-xs text-slate-600 leading-relaxed font-sans font-medium">
+            When you configure custom thumbnails, categories, or options, those parameters are saved inside your browser's private <strong class="text-[#eb5a00]">Local Storage</strong>. To make them show up permanently for <strong class="text-slate-900">all users on the live website</strong>, we need to save them into the central repository database file.
+          </p>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 flex flex-col gap-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">games.json content</span>
+              <button id="copy-sync-json-btn" class="px-2 py-1 text-[9px] bg-slate-200 hover:bg-slate-300 text-slate-700 rounded font-mono font-bold hover:scale-105 active:scale-95 cursor-pointer">
+                Copy JSON
+              </button>
+            </div>
+            <textarea id="sync-json-textarea" readonly class="w-full h-24 bg-white border border-slate-250 rounded-lg p-2.5 text-[11px] font-mono text-emerald-800 focus:outline-[#2b70e4] focus:outline focus:outline-1 resize-none no-scrollbar"></textarea>
+          </div>
+
+          <div class="flex items-start gap-2 bg-[#ff9800]/10 border border-orange-200 p-3 rounded-lg text-[11px] text-[#e75302] leading-relaxed">
+            <span class="text-xs">ℹ</span>
+            <p><strong>Instructions:</strong> Click <strong class="text-slate-900">Copy JSON</strong> above, and paste it directly into our Chat workspace bar with a message like: <em class="text-slate-900 italic">"Please commit these changes to games.json"</em>. I will overwrite it for you!</p>
+          </div>
+
+          <div class="flex justify-end border-t border-slate-200 pt-3 mt-1">
+            <button id="sync-close-cancel-btn" class="px-4 py-2 text-xs font-bold uppercase text-slate-600 bg-[#f1f5f9] hover:bg-slate-200 rounded-xl transition-colors cursor-pointer">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Interface scripts bridge to auth system ESM -->
+    <script type="module">
+      import {
+        setupFirebase,
+        registerUser,
+        loginUser,
+        loginUserWithGoogle,
+        logoutUser,
+        onUserChanged,
+        incrementGamesPlayed,
+        getUserProfile
+      } from "./src/auth.js";
+
+      // Earliest safe placeholders to prevent early runtime onclick failures
+      window.xyzTrackPlay = window.xyzTrackPlay || (async () => {
+        console.debug("xyzTrackPlay placeholder executed.");
+      });
+      window.playGame = window.playGame || ((gameId) => {
+        console.debug("playGame placeholder executed.");
+      });
+
+      // Global window binding interface so regular HTML binds can interact natively
+      window.xyzOpenModal = () => {
+        const overlay = document.getElementById("xyz-overlay");
+        if (overlay) overlay.classList.remove("hidden");
+      };
+
+      window.xyzCloseModal = () => {
+        const overlay = document.getElementById("xyz-overlay");
+        if (overlay) overlay.classList.add("hidden");
+        xyzClearErr();
+      };
+
+      window.xyzOpenSubmitModal = () => {
+        const modal = document.getElementById("add-game-modal-ambient");
+        if (modal) {
+          modal.classList.remove("hidden");
+          document.body.style.overflow = "hidden";
+        }
+      };
+
+      window.xyzTab = (tab) => {
+        const loginForm = document.getElementById("xyz-login");
+        const registerForm = document.getElementById("xyz-register");
+        const tabLogin = document.getElementById("xyz-tab-login");
+        const tabRegister = document.getElementById("xyz-tab-register");
+
+        if (tab === "login") {
+          loginForm.classList.remove("hidden");
+          registerForm.classList.add("hidden");
+          tabLogin.className = "flex-1 py-1 text-xs font-bold uppercase text-slate-800 bg-white rounded-lg transition-all shadow-sm";
+          tabRegister.className = "flex-1 py-1 text-xs font-bold uppercase text-slate-500 hover:text-slate-800 transition-all";
+        } else {
+          loginForm.classList.add("hidden");
+          registerForm.classList.remove("hidden");
+          tabLogin.className = "flex-1 py-1 text-xs font-bold uppercase text-slate-500 hover:text-slate-800 transition-all";
+          tabRegister.className = "flex-1 py-1 text-xs font-bold uppercase text-slate-800 bg-white rounded-lg transition-all shadow-sm";
+        }
+        xyzClearErr();
+      };
+
+      // Handle UI Error feedback
+      function xyzErr(msg) {
+        const errAlert = document.getElementById("xyz-err");
+        if (errAlert) {
+          errAlert.textContent = msg;
+          errAlert.classList.remove("hidden");
+        }
+      }
+
+      function xyzClearErr() {
+        const errAlert = document.getElementById("xyz-err");
+        if (errAlert) {
+          errAlert.classList.add("hidden");
+        }
+      }
+
+      function friendlyError(code) {
+        const map = {
+          "auth/email-already-in-use": "That email is already registered. Try signing in.",
+          "auth/invalid-email":        "Please enter a valid email address.",
+          "auth/wrong-password":       "Incorrect password. Try again.",
+          "auth/user-not-found":       "No account with that email. Register instead?",
+          "auth/weak-password":        "Password should be at least 6 characters.",
+          "auth/too-many-requests":    "Too many attempts. Please wait a moment.",
+          "auth/invalid-credential":   "Email or password is incorrect.",
+        };
+        return map[code] || code || "Something went wrong. Please try again.";
+      }
+
+      // Action Handlers
+      window.xyzRegister = async () => {
+        const nameInput = document.getElementById("re-name");
+        const emailInput = document.getElementById("re-email");
+        const passInput = document.getElementById("re-pass");
+
+        const username = nameInput ? nameInput.value.trim() : "";
+        const email = emailInput ? emailInput.value.trim() : "";
+        const password = passInput ? passInput.value : "";
+
+        xyzClearErr();
+        if (!username) return xyzErr("Please enter a username.");
+        if (username.length < 3) return xyzErr("Username must be at least 3 characters.");
+        if (!email) return xyzErr("Please enter your email.");
+        if (!password || password.length < 6) return xyzErr("Password must be at least 6 characters.");
+
+        try {
+          await registerUser(username, email, password);
+          if (nameInput) nameInput.value = "";
+          if (emailInput) emailInput.value = "";
+          if (passInput) passInput.value = "";
+          window.xyzCloseModal();
+        } catch (e) {
+          xyzErr(friendlyError(e.code || e.message));
+        }
+      };
+
+      window.xyzLogin = async () => {
+        const emailInput = document.getElementById("li-email");
+        const passInput = document.getElementById("li-pass");
+
+        const email = emailInput ? emailInput.value.trim() : "";
+        const password = passInput ? passInput.value : "";
+
+        xyzClearErr();
+        if (!email) return xyzErr("Please enter your email.");
+        if (!password) return xyzErr("Please enter your password.");
+
+        try {
+          await loginUser(email, password);
+          if (emailInput) emailInput.value = "";
+          if (passInput) passInput.value = "";
+          window.xyzCloseModal();
+        } catch (e) {
+          xyzErr(friendlyError(e.code || e.message));
+        }
+      };
+
+      window.xyzGoogleSignIn = async () => {
+        xyzClearErr();
+        try {
+          await loginUserWithGoogle();
+          window.xyzCloseModal();
+        } catch (e) {
+          xyzErr(friendlyError(e.code || e.message));
+        }
+      };
+
+      window.xyzLogout = async () => {
+        try {
+          await logoutUser();
+          window.xyzCloseModal();
+        } catch (e) {
+          console.error("Signout failed: ", e);
+        }
+      };
+
+      // Bootstrap initialization check
+      setupFirebase().then((state) => {
+        const accountBtn = document.getElementById("account-btn");
+        if (accountBtn) {
+          accountBtn.addEventListener("click", () => {
+            window.xyzOpenModal();
+          });
+        }
+
+        if (state.isConfigured) {
+          onUserChanged((user) => {
+            const navAv = document.getElementById("nav-av");
+            const navLabel = document.getElementById("nav-label");
+            const authForms = document.getElementById("auth-forms");
+            const profileView = document.getElementById("profile-view");
+
+            if (user) {
+              // Logged in
+              const color = window._pickColor(user.uid);
+              const initialsText = window._initials(user.displayName || "Gamer");
+
+              if (navAv) {
+                navAv.textContent = initialsText;
+                navAv.style.backgroundColor = color;
+              }
+              if (navLabel) {
+                navLabel.textContent = user.displayName || "Gamer";
+              }
+
+              // Sync forms visibility
+              if (authForms) authForms.classList.add("hidden");
+              if (profileView) profileView.classList.remove("hidden");
+
+              // Load extra data from firestore
+              getUserProfile(user.uid).then((data) => {
+                if (data) {
+                  const pvAv = document.getElementById("pv-av");
+                  const pvName = document.getElementById("pv-name");
+                  const pvEmail = document.getElementById("pv-email");
+                  const pvPlayed = document.getElementById("pv-played");
+                  const pvSince = document.getElementById("pv-since");
+
+                  if (pvAv) {
+                    pvAv.textContent = window._initials(data.username || "Gamer");
+                    pvAv.style.backgroundColor = data.avatarColor || color;
+                  }
+                  if (pvName) pvName.textContent = data.username || "Gamer";
+                  if (pvEmail) pvEmail.textContent = user.email;
+                  if (pvPlayed) pvPlayed.textContent = data.gamesPlayed || 0;
+
+                  if (pvSince && data.createdAt) {
+                    let d;
+                    if (typeof data.createdAt.toDate === "function") {
+                      d = data.createdAt.toDate();
+                    } else {
+                      d = new Date(data.createdAt);
+                    }
+                    pvSince.textContent = d.toLocaleString("default", { month: "short", year: "numeric" });
+                  }
+                }
+              });
+
+            } else {
+              // Logged out
+              if (navAv) {
+                navAv.textContent = "?";
+                navAv.style.backgroundColor = "#E85D2B";
+              }
+              if (navLabel) {
+                navLabel.textContent = "Sign in";
+              }
+
+              if (authForms) authForms.classList.remove("hidden");
+              if (profileView) profileView.classList.add("hidden");
+            }
+          });
+
+          // Interface bridge to increment gameplay on request
+          window.xyzTrackPlay = async () => {
+            const user = window._xyzAuth?.currentUser;
+            if (user) {
+              await incrementGamesPlayed(user.uid);
+            }
+          };
+        } else {
+          // Fallback interface if credentials are missing
+          console.info("Running MathPlayground Copy in offline profile mode.");
+          window.xyzTrackPlay = async () => {
+            // No-op or local sandbox mock increment
+          };
+        }
+      });
+    </script>
+
+    <!-- Active dynamic logic script loads -->
+    <script src="./src/app.js?v=2.6" type="module"></script>
+    
+    <!-- Lucide icons runner -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
