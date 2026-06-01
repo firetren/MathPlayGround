@@ -120,35 +120,56 @@ document.addEventListener('DOMContentLoaded', () => {
 async function initApp() {
   // Load favorites from local storage
   try {
-    favorites = JSON.parse(localStorage.getItem(FAV_STORAGE_KEY)) || [];
+    favorites = JSON.parse(localStorage.getItem(FAV_STORAGE_KEY));
   } catch (e) {
+    favorites = [];
+  }
+  if (!Array.isArray(favorites)) {
     favorites = [];
   }
 
   // Load recent plays from local storage
   try {
-    recentPlays = JSON.parse(localStorage.getItem(RECENT_STORAGE_KEY)) || [];
+    recentPlays = JSON.parse(localStorage.getItem(RECENT_STORAGE_KEY));
   } catch (e) {
     recentPlays = [];
   }
+  if (!Array.isArray(recentPlays)) {
+    recentPlays = [];
+  }
 
-  // Fetch games from JSON
+  // Fetch games from JSON with solid validation fallback
   try {
-    let defaultGames = defaultGamesData || [];
+    let defaultGames = (Array.isArray(defaultGamesData) && defaultGamesData.length > 0) ? defaultGamesData : [];
     try {
       const response = await fetch('./src/games.json?t=' + Date.now());
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      defaultGames = await response.json();
+      const parsed = await response.json();
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        defaultGames = parsed;
+      } else {
+        throw new Error('Fetched games.json is not a valid non-empty array.');
+      }
     } catch (e1) {
       try {
         const response2 = await fetch('src/games.json?t=' + Date.now());
         if (!response2.ok) throw new Error(`HTTP error! status: ${response2.status}`);
-        defaultGames = await response2.json();
+        const parsed2 = await response2.json();
+        if (Array.isArray(parsed2) && parsed2.length > 0) {
+          defaultGames = parsed2;
+        } else {
+          throw new Error('Fetched games.json is not a valid non-empty array.');
+        }
       } catch (e2) {
         try {
           const response3 = await fetch('./games.json?t=' + Date.now());
           if (!response3.ok) throw new Error(`HTTP error! status: ${response3.status}`);
-          defaultGames = await response3.json();
+          const parsed3 = await response3.json();
+          if (Array.isArray(parsed3) && parsed3.length > 0) {
+            defaultGames = parsed3;
+          } else {
+            throw new Error('Fetched games.json is not a valid non-empty array.');
+          }
         } catch (e3) {
           console.warn('Network fetch attempts failed, using pre-bundled games database instead.');
         }
@@ -158,21 +179,30 @@ async function initApp() {
     // Fetch custom user added games
     let customGames = [];
     try {
-      customGames = JSON.parse(localStorage.getItem(CUSTOM_STORAGE_KEY)) || [];
+      const storedVal = localStorage.getItem(CUSTOM_STORAGE_KEY);
+      customGames = JSON.parse(storedVal);
     } catch (e) {
       customGames = [];
     }
+    if (!Array.isArray(customGames)) {
+      customGames = [];
+    }
 
-    gamesData = [...defaultGames, ...customGames];
+    gamesData = [...defaultGames, ...customGames].filter(g => g && typeof g === 'object' && g.id);
   } catch (err) {
     console.error('Failed to load games database, using custom repository and pre-bundled fallback', err);
     let customGames = [];
     try {
-      customGames = JSON.parse(localStorage.getItem(CUSTOM_STORAGE_KEY)) || [];
+      const storedVal = localStorage.getItem(CUSTOM_STORAGE_KEY);
+      customGames = JSON.parse(storedVal);
     } catch (e) {
       customGames = [];
     }
-    gamesData = [...(defaultGamesData || []), ...customGames];
+    if (!Array.isArray(customGames)) {
+      customGames = [];
+    }
+    const safeDefault = Array.isArray(defaultGamesData) ? defaultGamesData : [];
+    gamesData = [...safeDefault, ...customGames].filter(g => g && typeof g === 'object' && g.id);
   }
 
   // Apply custom thumbnails overrides
