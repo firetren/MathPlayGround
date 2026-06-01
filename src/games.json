@@ -154,5 +154,57 @@
     "color": "from-indigo-500 to-pink-500",
     "thumbnailUrl": "https://i.ibb.co/Ldj8bBjh/Bomb-hopper-io-Thumbnail.webp",
     "thumbnailFit": "cover"
+  },
+  {
+    "id": "arcade-glide",
+    "title": "Arcade Drift",
+    "description": "Race through endless drifting tracks, unlock stylish cars, master sharp turns, and chase high scores.",
+    "iframeUrl": "https://geometry-games.io/embed/arcade-glide?pub_id=ca-pub-8859934936389708&preroll=1&preroll_type=adsense",
+    "category": "Brain Boosts",
+    "icon": "Compass",
+    "instructions": "Press Left/Right Arrow keys or A/D to steer and drift. Hold or press Space to customize drifts on sharp turns.",
+    "credits": "Geometry Games",
+    "color": "from-pink-500 to-indigo-600",
+    "thumbnailUrl": "https://i.ibb.co/6q1tt3C/arcade-glidde-thumbnail-mathplayground-copy.jpg",
+    "thumbnailFit": "cover"
+  },
+  {
+    "id": "drive-mad",
+    "title": "Drive Mad",
+    "description": "Steer a high-powered 4x4 stunt truck over thrilling, mind-bending interactive physical tracks.",
+    "iframeUrl": "https://gamecollections.me/game/3kh0-assets-main/drive-mad/",
+    "category": "Brain Boosts",
+    "icon": "Zap",
+    "instructions": "Use Left/Right or A/D keys to accelerate and reverse. Coordinate precise speed bursts to master leaps and balance over hurdles.",
+    "credits": "Martin Magni",
+    "color": "from-yellow-400 to-amber-500",
+    "thumbnailUrl": "https://i.ibb.co/35sDzK5n/drive-mad-thumbnail-mathsplayground-copy.webp",
+    "thumbnailFit": "cover"
+  },
+  {
+    "id": "basket-random",
+    "title": "Basket Random",
+    "description": "Experience wacky 2-player basketball physics. Bounce, bobble, and slam-dunk your way to victory!",
+    "iframeUrl": "https://html5.gamedistribution.com/bf1268dccb5d43e7970bb3edaa54afc8/?gd_sdk_referrer_url=https://basketrandom.io/basket-random",
+    "category": "Brain Boosts",
+    "icon": "Gamepad",
+    "instructions": "Press Up Arrow key or click to jump, bounce, and throw. First to score 5 points wins!",
+    "credits": "RHM Interactive",
+    "color": "from-amber-500 to-orange-600",
+    "thumbnailUrl": "https://img.gamedistribution.com/bf1268dccb5d43e7970bb3edaa54afc8-512x512.jpeg",
+    "thumbnailFit": "cover"
+  },
+  {
+    "id": "vex-7",
+    "title": "Vex 7",
+    "description": "Perform spectacular acrobatic parkour leaps and navigate hazardous traps in this high-intensity stickman platformer.",
+    "iframeUrl": "https://www.coolmathgames.com/sites/default/files/public_games/43835/?gd_sdk_referrer_url=https%3A%2F%2Fwww.coolmathgames.com%2F0-vex-7",
+    "category": "Brain Boosts",
+    "icon": "Zap",
+    "instructions": "Move with WASD or Arrow Keys. Jump with W or Up Arrow, slide or crouch with S or Down Arrow. Scale walls, leap over spikes, and reach the green portal safely.",
+    "credits": "Amazing Adam",
+    "color": "from-orange-500 to-amber-600",
+    "thumbnailUrl": "https://i.ibb.co/TJz0RTd/Vex-7-thumbnail-mp.jpg",
+    "thumbnailFit": "cover"
   }
 ]

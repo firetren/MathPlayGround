@@ -3,6 +3,8 @@
  * Vanilla JS client implementation for lightweight, 100% unblocked performance.
  */
 
+import defaultGamesData from './games.json';
+
 // Local persistence keys
 const CUSTOM_STORAGE_KEY = 'unblocked_custom_games';
 const FAV_STORAGE_KEY = 'unblocked_favorites';
@@ -132,7 +134,7 @@ async function initApp() {
 
   // Fetch games from JSON
   try {
-    let defaultGames = [];
+    let defaultGames = defaultGamesData || [];
     try {
       const response = await fetch('./src/games.json?t=' + Date.now());
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -148,7 +150,7 @@ async function initApp() {
           if (!response3.ok) throw new Error(`HTTP error! status: ${response3.status}`);
           defaultGames = await response3.json();
         } catch (e3) {
-          console.error('All fetch attempts failed:', e1, e2, e3);
+          console.warn('Network fetch attempts failed, using pre-bundled games database instead.');
         }
       }
     }
@@ -163,14 +165,14 @@ async function initApp() {
 
     gamesData = [...defaultGames, ...customGames];
   } catch (err) {
-    console.error('Failed to load games database, using custom repository fallback', err);
+    console.error('Failed to load games database, using custom repository and pre-bundled fallback', err);
     let customGames = [];
     try {
       customGames = JSON.parse(localStorage.getItem(CUSTOM_STORAGE_KEY)) || [];
     } catch (e) {
       customGames = [];
     }
-    gamesData = [...customGames];
+    gamesData = [...(defaultGamesData || []), ...customGames];
   }
 
   // Apply custom thumbnails overrides
@@ -605,7 +607,13 @@ function renderActiveGrid() {
     if (currentCategory === 'Favorites') return favorites.includes(game.id);
     if (currentCategory === 'Custom') return game.custom === true;
     
-    return game.category === currentCategory;
+    // Map HTML tab category attributes to games.json database category values
+    let targetCategory = currentCategory;
+    if (currentCategory === 'Car games') targetCategory = 'Logic Lab';
+    if (currentCategory === 'Arcade') targetCategory = 'Brain Boosts';
+    if (currentCategory === 'Simulation') targetCategory = 'Library';
+    
+    return game.category === targetCategory;
   });
 
   // Filter out games that are already displayed at the bottom under "Thinking Challenges" to prevent duplicates on default view
