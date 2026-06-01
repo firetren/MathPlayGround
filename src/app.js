@@ -3,7 +3,7 @@
  * Vanilla JS client implementation for lightweight, 100% unblocked performance.
  */
 
-import defaultGamesData from './games.json';
+import { defaultGamesData } from './games-data.js';
 
 // Local persistence keys
 const CUSTOM_STORAGE_KEY = 'unblocked_custom_games';
