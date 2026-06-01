@@ -45,12 +45,31 @@
         -webkit-text-stroke: 1.5px #104ba1;
         text-shadow: 2px 2px 0px #1c52b2;
       }
+      /* Crop dark bottom bars from game thumbnails */
+      #games-grid-layout .aspect-square img {
+        object-position: top center;
+      }
+      
+      /* Global Desktop level page zoom mimicking the authentic cozy scaled layout */
+      #overall-content-sheet {
+        zoom: 1.15;
+      }
+      @media (min-width: 1400px) {
+        #overall-content-sheet {
+          zoom: 1.25;
+        }
+      }
+      @media (max-width: 767px) {
+        #overall-content-sheet {
+          zoom: 1.0 !important;
+        }
+      }
     </style>
   </head>
   <body class="min-h-screen bg-[#2b70e4] text-[#1e293b] font-sans selection:bg-[#0c7dec]/35 flex flex-col justify-between">
 
     <!-- Overall Content Container Sheet matching Math Playground visual wrapper -->
-    <div class="w-full max-w-5xl mx-auto bg-[#fafafa] flex flex-col shadow-2xl min-h-screen border-x border-[#1a4ea3]/20">
+    <div id="overall-content-sheet" class="w-full max-w-5xl mx-auto bg-[#fafafa] flex flex-col shadow-2xl min-h-screen border-x border-[#1a4ea3]/20">
       
       <!-- Top Primary Blue Navigation Bar -->
       <header class="bg-[#104ba1] text-white py-3.5 px-4 sm:px-6 md:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 sticky top-0 z-40 shadow-md">
@@ -108,6 +127,12 @@
           </div>
         </div>
       </header>
+
+      <!-- Purple Information Strip echoing the real Math Playground banner in user's request screen -->
+      <div class="bg-[#5c2195] text-white text-xs font-semibold py-2.5 px-4 text-center select-none shrink-0 border-b border-purple-800/10">
+        Teachers: Introducing Math Playground Plus, a separate site for schools and districts. 
+        <a href="#" onclick="window.xyzOpenModal(); return false;" class="underline text-amber-300 hover:text-amber-200 font-extrabold ml-1 leading-none inline-block">Learn More</a>
+      </div>
 
       <!-- Main Platform Canvas Area styled on a light, responsive page container -->
       <main class="flex-grow flex flex-col gap-6 py-6 px-4 sm:px-6 md:px-8 w-full bg-white">
@@ -249,38 +274,38 @@
           </div>
 
           <!-- 1. Top Colorful Category Tabs -->
-          <div class="flex flex-col gap-4 shrink-0 px-2">
-            <nav id="categories-tab-bar" class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+          <div class="flex flex-col gap-4 shrink-0 px-2 mt-2">
+            <nav id="categories-tab-bar" class="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
               <button 
                 data-category="All" 
-                class="bg-[#0c7dec] text-white border-b-4 border-blue-700 font-bold hover:brightness-110 active:translate-y-0.5 rounded-xl py-3 px-1 transition-all text-xs sm:text-sm shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
+                class="bg-[#1d78c1] text-white border-b-4 border-[#0F5A94] font-black hover:scale-[1.03] hover:brightness-110 active:translate-y-0.5 rounded-2xl py-3.5 px-3 transition-all text-xs sm:text-[15px] uppercase tracking-dense shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
               >
                 Math Games
               </button>
               <button 
                 data-category="Simulation" 
-                class="bg-[#e75302] text-white border-b-4 border-orange-700 font-bold hover:brightness-110 active:translate-y-0.5 rounded-xl py-3 px-1 transition-all text-xs sm:text-sm shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
+                class="bg-[#ea7317] text-white border-b-4 border-[#B95503] font-black hover:scale-[1.03] hover:brightness-110 active:translate-y-0.5 rounded-2xl py-3.5 px-3 transition-all text-xs sm:text-[15px] uppercase tracking-dense shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
               >
                 Math Stories
               </button>
               <button 
                 data-category="Car games" 
-                class="bg-[#009b91] text-white border-b-4 border-teal-700 font-bold hover:brightness-110 active:translate-y-0.5 rounded-xl py-3 px-1 transition-all text-xs sm:text-sm shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
+                class="bg-[#0099ab] text-white border-b-4 border-[#006F7C] font-black hover:scale-[1.03] hover:brightness-110 active:translate-y-0.5 rounded-2xl py-3.5 px-3 transition-all text-xs sm:text-[15px] uppercase tracking-dense shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
               >
                 Logic Lab
               </button>
               <button 
                 data-category="Arcade" 
-                class="bg-[#746ef7] text-white border-b-4 border-indigo-700 font-bold hover:brightness-110 active:translate-y-0.5 rounded-xl py-3 px-1 transition-all text-xs sm:text-sm shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
+                class="bg-[#6366f1] text-white border-b-4 border-[#413AC5] font-black hover:scale-[1.03] hover:brightness-110 active:translate-y-0.5 rounded-2xl py-3.5 px-3 transition-all text-xs sm:text-[15px] uppercase tracking-dense shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
               >
                 Brain Boosts
               </button>
               <button 
                 data-category="Favorites" 
-                class="bg-[#cd2a3d] text-white border-b-4 border-rose-800 font-bold hover:brightness-110 active:translate-y-0.5 rounded-xl py-3 px-1 transition-all text-xs sm:text-sm shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans col-span-2 sm:col-span-1"
+                class="bg-[#c22d41] text-white border-b-4 border-[#941A2B] font-black hover:scale-[1.03] hover:brightness-110 active:translate-y-0.5 rounded-2xl py-3.5 px-3 transition-all text-xs sm:text-[15px] uppercase tracking-dense shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans col-span-2 sm:col-span-1"
               >
                 Library / Pin Game
-                <span id="fav-category-badge" class="hidden font-mono text-[9px] px-1.5 py-0.5 rounded-full bg-white/20 ml-1">0</span>
+                <span id="fav-category-badge" class="hidden font-mono text-[10px] px-2 py-0.5 rounded-full bg-white/20 ml-1">0</span>
               </button>
 
               <!-- Optional hidden element for custom filter triggers to prevent DOM error -->
@@ -288,24 +313,27 @@
             </nav>
 
             <!-- 2. Circular Grade Selector Pills row matching design -->
-            <div class="flex items-center justify-center gap-1.5 sm:gap-2.5 flex-wrap py-1 border-t border-slate-100 mt-1 select-none">
-              <button onclick="document.getElementById('header-search-bar').value='pre-k'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#9c51e0] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">K</button>
-              <button onclick="document.getElementById('header-search-bar').value='1st'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#0099ab] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">1</button>
-              <button onclick="document.getElementById('header-search-bar').value='2nd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#5873f4] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">2</button>
-              <button onclick="document.getElementById('header-search-bar').value='3rd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#dc2f41] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">3</button>
-              <button onclick="document.getElementById('header-search-bar').value='4th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#5b6488] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">4</button>
-              <button onclick="document.getElementById('header-search-bar').value='5th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#f06105] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">5</button>
-              <button onclick="document.getElementById('header-search-bar').value='6th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-8 h-8 rounded-full bg-[#057df0] text-white font-bold text-sm tracking-tight hover:scale-105 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">6+</button>
+            <div class="flex items-center justify-center gap-2 sm:gap-3 flex-wrap py-2 border-t border-slate-100 mt-2 select-none">
+              <button onclick="document.getElementById('header-search-bar').value='pre-k'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-12 h-12 rounded-full bg-[#9c51e0] text-white font-extrabold text-lg tracking-tight hover:scale-110 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">K</button>
+              <button onclick="document.getElementById('header-search-bar').value='1st'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-12 h-12 rounded-full bg-[#0099ab] text-white font-extrabold text-lg tracking-tight hover:scale-110 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">1</button>
+              <button onclick="document.getElementById('header-search-bar').value='2nd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-12 h-12 rounded-full bg-[#2196f3] text-white font-extrabold text-lg tracking-tight hover:scale-110 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">2</button>
+              <button onclick="document.getElementById('header-search-bar').value='3rd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-12 h-12 rounded-full bg-[#dc2f41] text-white font-extrabold text-lg tracking-tight hover:scale-110 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">3</button>
+              <button onclick="document.getElementById('header-search-bar').value='4th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-12 h-12 rounded-full bg-[#5b6488] text-white font-extrabold text-lg tracking-tight hover:scale-110 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">4</button>
+              <button onclick="document.getElementById('header-search-bar').value='5th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-12 h-12 rounded-full bg-[#f06105] text-white font-extrabold text-lg tracking-tight hover:scale-110 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">5</button>
+              <button onclick="document.getElementById('header-search-bar').value='6th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="w-12 h-12 rounded-full bg-[#057df0] text-white font-extrabold text-lg tracking-tight hover:scale-110 hover:brightness-110 shadow-sm cursor-pointer transition-all flex items-center justify-center">6+</button>
+              <button onclick="document.getElementById('header-search-bar').focus()" class="w-12 h-12 rounded-full bg-slate-150 text-slate-800 border-2 border-slate-300 font-bold hover:scale-110 hover:bg-slate-200 active:scale-95 shadow-sm cursor-pointer transition-all flex items-center justify-center" title="Search Games">
+                <svg class="w-5 h-5 text-slate-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              </button>
             </div>
           </div>
 
           <!-- 3. Header Intro Title and Description in rich blue colors -->
-          <div class="text-center px-4 max-w-3xl mx-auto flex flex-col gap-2 shrink-0">
-            <h2 class="text-xl sm:text-2xl font-black text-[#1b4392] tracking-normal font-display select-none">
-              Brain Boosts: Quick Challenges to Reset and Refocus
+          <div class="text-center px-4 max-w-4xl mx-auto flex flex-col gap-3 shrink-0">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#194ea3] tracking-tight font-sans text-center mt-3 select-none">
+              Math Games: Engaging Practice for Kids in Grades K–6
             </h2>
-            <p class="text-[13px] sm:text-sm text-[#214ca6] leading-relaxed font-sans max-w-2xl select-text">
-              Recharge with quick activities and puzzles that reset your focus and spark creative thinking. Each activity strengthens attention, persistence, and problem-solving. Whether you're between lessons or just want a quick challenge, these short brain boosts help you reset so you can jump back into your next math mission.
+            <p class="text-[13px] sm:text-[15px] text-[#1e88e5] font-semibold tracking-wide text-center leading-relaxed max-w-4xl mx-auto select-text">
+              Our interactive math games are designed to support classroom instruction and independent practice through playful challenges. Students solve math problems, explore visual models, and practice computation across a variety of math topics. Each activity is designed to reinforce math concepts while helping students build foundational skills in a purposeful, playful way.
             </p>
           </div>
 
@@ -333,29 +361,38 @@
           <div class="text-center font-mono text-[10px] text-slate-400 select-none tracking-normal">
             Advertisement | <span onclick="window.xyzOpenModal()" class="cursor-pointer hover:underline hover:text-slate-600 font-bold">Go Ad-Free!</span>
           </div>
-          <div class="bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-200/65 rounded-2xl p-4 flex flex-col md:flex-row items-center gap-5 shrink-0 max-w-4xl mx-auto w-full shadow-sm">
-            <!-- Monster image and title placeholder -->
-            <div class="flex items-center gap-3.5 select-none shrink-0 border-b md:border-b-0 md:border-r border-teal-200 pb-3 md:pb-0 md:pr-4 w-full md:w-auto justify-center">
-              <div class="w-12 h-12 bg-[#8bc34a] rounded-2xl flex items-center justify-center font-black text-2xl text-white shadow-md border-2 border-white transform rotate-3">
-                🤖
-              </div>
-              <div class="text-left">
-                <h4 class="font-extrabold text-[#007a72] text-sm leading-tight font-display">Adapted Mind</h4>
-                <p class="text-[10px] text-teal-600 leading-none mt-0.5">Custom Lessons</p>
+          <div class="bg-white border-2 border-dashed border-teal-200/80 rounded-3xl p-3 flex flex-col md:flex-row items-center gap-4 shrink-0 max-w-4xl mx-auto w-full shadow-sm">
+            
+            <!-- Left Side Adapted Mind Badge Card -->
+            <div onclick="window.xyzOpenModal()" class="bg-[#13b567] text-white rounded-2xl p-2.5 flex flex-col items-center justify-center text-center self-stretch shrink-0 w-32 shadow-sm select-none cursor-pointer hover:scale-105 active:scale-95 transition-all">
+              <span class="text-[12px] font-black uppercase tracking-wider font-display leading-none">Adapted</span>
+              <span class="text-[12px] font-black uppercase text-yellow-300 tracking-wider font-display leading-none mt-1">Mind</span>
+              <!-- Monster avatar -->
+              <div class="relative w-12 h-12 mt-1.5 flex-shrink-0">
+                <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
+                  <circle cx="50" cy="50" r="44" fill="#9c27b0" stroke="white" stroke-width="4" />
+                  <path d="M 40 12 L 50 25 L 60 12" fill="#9c27b0" />
+                  <circle cx="34" cy="42" r="11" fill="white" />
+                  <circle cx="34" cy="42" r="4.5" fill="black" />
+                  <circle cx="66" cy="42" r="11" fill="white" />
+                  <circle cx="66" cy="42" r="4.5" fill="black" />
+                  <path d="M 32 63 Q 50 82 68 63" stroke="white" stroke-width="5" stroke-linecap="round" fill="none" />
+                </svg>
               </div>
             </div>
-            <!-- Pill links -->
-            <div class="flex flex-wrap items-center justify-center gap-1.5 flex-1 text-xs select-none">
-              <button onclick="document.getElementById('header-search-bar').value='pre-k'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#4caf50] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-emerald-600 cursor-pointer">Pre-K</button>
-              <button onclick="document.getElementById('header-search-bar').value='kindergarten'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#e91e63] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-rose-600 cursor-pointer">Kindergarten</button>
-              <button onclick="document.getElementById('header-search-bar').value='1st'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#2196f3] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-blue-600 cursor-pointer">1st Grade</button>
-              <button onclick="document.getElementById('header-search-bar').value='2nd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#ff9800] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-amber-600 cursor-pointer">2nd Grade</button>
-              <button onclick="document.getElementById('header-search-bar').value='3rd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#e51c23] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-red-700 cursor-pointer">3rd Grade</button>
-              <button onclick="document.getElementById('header-search-bar').value='4th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#f44336] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-red-600 cursor-pointer">4th Grade</button>
-              <button onclick="document.getElementById('header-search-bar').value='5th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#e91e63] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-rose-600 cursor-pointer">5th Grade</button>
-              <button onclick="document.getElementById('header-search-bar').value='6th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#f44336] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-red-600 cursor-pointer">6th Grade</button>
-              <button onclick="document.getElementById('header-search-bar').value='7th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#f44336] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-red-600 cursor-pointer">7th Grade</button>
-              <button onclick="document.getElementById('header-search-bar').value='8th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#f44336] hover:scale-105 active:scale-[0.98] transition-all text-white font-extrabold px-3 py-1.5 rounded-lg shadow-sm border border-red-600 cursor-pointer">8th Grade</button>
+
+            <!-- Pill links: 2x5 Grid of blocky category/grade links -->
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 flex-1 w-full text-xs select-none">
+              <button onclick="document.getElementById('header-search-bar').value='pre-k'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#13b567] hover:brightness-110 active:translate-y-0.5 border-b-4 border-green-800 text-white font-extrabold py-2 px-1 rounded-xl text-center cursor-pointer transition-all">Pre-K</button>
+              <button onclick="document.getElementById('header-search-bar').value='kindergarten'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#9c51e0] hover:brightness-110 active:translate-y-0.5 border-b-4 border-purple-800 text-white font-extrabold py-2 px-1 rounded-xl text-center cursor-pointer transition-all">Kindergarten</button>
+              <button onclick="document.getElementById('header-search-bar').value='1st'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#2196f3] hover:brightness-110 active:translate-y-0.5 border-b-4 border-blue-800 text-white font-extrabold py-2 px-1 rounded-xl text-center cursor-pointer transition-all">1st Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='2nd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#ffc107] hover:brightness-110 active:translate-y-0.5 border-b-4 border-amber-600 text-white font-extrabold py-2 px-1 rounded-xl text-center cursor-pointer transition-all">2nd Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='3rd'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#4caf50] hover:brightness-110 active:translate-y-0.5 border-b-4 border-green-800 text-white font-extrabold py-2 px-1 rounded-xl text-center cursor-pointer transition-all">3rd Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='4th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#e91e63] hover:brightness-110 active:translate-y-0.5 border-b-4 border-pink-800 text-white font-extrabold py-2 px-1 rounded-xl text-center cursor-pointer transition-all">4th Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='5th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#ff9800] hover:brightness-110 active:translate-y-0.5 border-b-4 border-orange-700 text-white font-extrabold py-2 px-1 rounded-xl text-center cursor-pointer transition-all">5th Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='6th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#3f51b5] hover:brightness-110 active:translate-y-0.5 border-b-4 border-indigo-800 text-white font-extrabold py-2 px-1 rounded-xl text-center cursor-pointer transition-all">6th Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='7th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#7e57c2] hover:brightness-110 active:translate-y-0.5 border-b-4 border-purple-800 text-white font-extrabold py-2 px-1 rounded-xl text-center cursor-pointer transition-all">7th Grade</button>
+              <button onclick="document.getElementById('header-search-bar').value='8th'; document.getElementById('header-search-bar').dispatchEvent(new Event('input'))" class="bg-[#00bcd4] hover:brightness-110 active:translate-y-0.5 border-b-4 border-cyan-800 text-white font-extrabold py-2 px-1 rounded-xl text-center cursor-pointer transition-all">8th Grade</button>
             </div>
           </div>
 
@@ -365,7 +402,7 @@
             <!-- Grid Title with pink star & outline -->
             <div class="flex items-center justify-between border-b-2 border-[#e62b7a]/20 pb-2.5 px-1.5 select-none">
               <h3 class="text-lg sm:text-xl font-extrabold text-[#e62b7a] tracking-normal flex items-center gap-2">
-                <span class="text-xl">★</span> Featured Challenges
+                <span class="text-xl">★</span> Featured Games
               </h3>
             </div>
 

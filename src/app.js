@@ -1015,8 +1015,8 @@ function setupArenaView(game) {
     if (warningContent) {
       if (game.id === 'smash-karts') {
         warningContent.innerHTML = `
-          <h4 class="font-bold text-sm text-rose-400 mb-0.5">⚠️ Smash Karts Save Warning</h4>
-          <p class="leading-relaxed text-rose-200 font-sans">Your unblockedxyz portal account will <strong>NOT</strong> save your progress. To save your levels, stats, and unlocked customization items, you must register or log in to a personal account directly inside the Smash Karts game client.</p>
+          <h4 class="font-bold text-sm text-rose-400 mb-0.5">⚠️ Math Karts Save Warning</h4>
+          <p class="leading-relaxed text-rose-200 font-sans">Your unblockedxyz portal account will <strong>NOT</strong> save your progress. To save your levels, stats, and unlocked customization items, you must register or log in to a personal account directly inside the Math Karts game client.</p>
         `;
       } else {
         warningContent.innerHTML = `
@@ -1084,12 +1084,12 @@ function setupArenaView(game) {
     }
 
     const splashWarningHTML = isSmashKarts ? `
-        <!-- Custom Smash Karts account save warning card block -->
+        <!-- Custom Math Karts account save warning card block -->
         <div class="mt-8 max-w-xs bg-rose-950/40 border border-rose-500/20 backdrop-blur-md rounded-2xl p-4 flex items-start gap-3 text-left">
           <svg class="w-5 h-5 text-rose-500 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
           <div class="text-[11px] text-rose-200 leading-relaxed font-sans">
             <span class="font-bold text-rose-300 block mb-0.5 text-xs">⚠️ unblockedxyz Accounts Do Not Save Progress</span>
-            Your unblockedxyz portal account will NOT save your progress. To save your levels and stats, you must register or log in to a personal account directly inside the Smash Karts game client.
+            Your unblockedxyz portal account will NOT save your progress. To save your levels and stats, you must register or log in to a personal account directly inside the Math Karts game client.
           </div>
         </div>
     ` : `

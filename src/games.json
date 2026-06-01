@@ -9,7 +9,7 @@
     "instructions": "Connect blocks of numbers in high-octane speed challenges!",
     "credits": "Math Playground Studio",
     "color": "from-orange-500 to-yellow-500",
-    "thumbnailUrl": "https://images.crazygames.com/games/racing-limits/cover_16x9.png",
+    "thumbnailUrl": "https://i.ibb.co/FbVN4fYH/racing-limits-thumbnail-mathsplayground-copy.png",
     "thumbnailFit": "cover"
   },
   {
@@ -22,7 +22,7 @@
     "instructions": "Hold and drag along the line carefully to guide the cat racer through winding curves.",
     "credits": "Nod Games",
     "color": "from-indigo-600 to-indigo-800",
-    "thumbnailUrl": "https://images.crazygames.com/games/city-bus-driver/cover_16x9.png",
+    "thumbnailUrl": "https://i.ibb.co/cKFjgZHc/City-Bus-Driver-thumbnail.jpg",
     "thumbnailFit": "cover"
   },
   {
@@ -53,7 +53,7 @@
   },
   {
     "id": "smash-karts",
-    "title": "Smash Karts",
+    "title": "Math Karts",
     "description": "Guide your block karts to solve intense mechanical grid puzzle layouts.",
     "iframeUrl": "https://smashkarts.io",
     "category": "Library",
@@ -74,7 +74,7 @@
     "instructions": "Propel the elastic block head to hit the target button. Control velocity and wall rebounds.",
     "credits": "Head Labs",
     "color": "from-pink-500 to-rose-650",
-    "thumbnailUrl": "https://images.crazygames.com/games/gulper-io/cover_16x9.png",
+    "thumbnailUrl": "https://i.ibb.co/wZPHvNSB/Gulper-io-thumbnail.png",
     "thumbnailFit": "cover"
   },
   {
@@ -126,7 +126,7 @@
     "instructions": "Steer and lean the motorcycle racer precisely over loops and ramps inside the logic course.",
     "credits": "Madpuffers",
     "color": "from-red-500 to-orange-600",
-    "thumbnailUrl": "https://images.crazygames.com/games/moto-x3m-2/cover_16x9.png",
+    "thumbnailUrl": "https://i.ibb.co/Mx3tBk87/Moto-x3m-thumbnail-mathsplayground-copy.avif",
     "thumbnailFit": "cover"
   },
   {
