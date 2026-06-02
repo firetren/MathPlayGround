@@ -112,10 +112,14 @@ function applyCustomThumbnails() {
   });
 }
 
-// Initialize app when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize app when DOM is fully loaded or running immediately if already parsed
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
   initApp();
-});
+} else {
+  document.addEventListener('DOMContentLoaded', () => {
+    initApp();
+  });
+}
 
 async function initApp() {
   // Load favorites from local storage

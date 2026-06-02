@@ -206,5 +206,18 @@ export const defaultGamesData = [
     "color": "from-orange-500 to-amber-600",
     "thumbnailUrl": "https://i.ibb.co/TJz0RTd/Vex-7-thumbnail-mp.jpg",
     "thumbnailFit": "cover"
+  },
+  {
+    "id": "escape-road-2",
+    "title": "Escape Road 2",
+    "description": "Escape the law! Maneuver your getaway car, pull drift tricks, avoid blockades, and survive the chase.",
+    "iframeUrl": "https://game.azgame.io/escape-road-2/",
+    "category": "Logic Lab",
+    "icon": "Compass",
+    "instructions": "Use WASD or Arrow Keys to steer and navigate. Keep away from pursuing police cruisers and dodge obstacles.",
+    "credits": "AZ Games",
+    "color": "from-red-600 to-amber-700",
+    "thumbnailUrl": "https://i.ibb.co/YwCyHxH/Escape-Road-thumbnail-mp.png",
+    "thumbnailFit": "cover"
   }
 ];
