@@ -35,7 +35,7 @@
     "instructions": "Tap and hold Space or Click to drift right. Double-jump at the blue checkpoints to pass obstacles.",
     "credits": "MarketJS",
     "color": "from-yellow-500 to-amber-600",
-    "thumbnailUrl": "https://i.ibb.co/v6F16kT9/drift-boss-thumbnail-mathplaygroud-copy.webp",
+    "thumbnailUrl": "https://i.ibb.co/KpxNkrrQ/Drift-Boss-Thumb-Nail.png",
     "thumbnailFit": "cover"
   },
   {
@@ -231,6 +231,19 @@
     "credits": "GameDistribution",
     "color": "from-emerald-600 to-green-800",
     "thumbnailUrl": "https://img.gamedistribution.com/899c82ac71ba4dd5a571fc9bc35f55f8-512x512.jpeg",
+    "thumbnailFit": "cover"
+  },
+  {
+    "id": "rooftop-run",
+    "title": "Rooftop Run",
+    "description": "Dash across city rooftops, vault over obstacles, leap across buildings, and run as fast as you can in this thrilling high-speed parkour game.",
+    "iframeUrl": "https://html5.gamedistribution.com/cee36dd2c4f34d5797921a49bb1d4b83/?gd_sdk_referrer_url=https://www.onlinegames.io/rooftop-run/",
+    "category": "Brain Boosts",
+    "icon": "Zap",
+    "instructions": "Click or Tap to jump. Hold for a longer jump to leap over wider gaps between rooftops.",
+    "credits": "GameDistribution",
+    "color": "from-sky-500 to-blue-700",
+    "thumbnailUrl": "https://i.ibb.co/6chSQXs3/rooftop-run-xs.webp",
     "thumbnailFit": "cover"
   }
 ]
