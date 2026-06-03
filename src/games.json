@@ -219,5 +219,18 @@
     "color": "from-red-600 to-amber-700",
     "thumbnailUrl": "https://i.ibb.co/YwCyHxH/Escape-Road-thumbnail-mp.png",
     "thumbnailFit": "cover"
+  },
+  {
+    "id": "soccer-skills-euro-cup",
+    "title": "Soccer Skills Euro Cup",
+    "description": "Lead your country to championship glory in this 3D European soccer tournament. Pass, cross, tackle, and score!",
+    "iframeUrl": "https://html5.gamedistribution.com/899c82ac71ba4dd5a571fc9bc35f55f8/?gd_sdk_referrer_url=https%3A%2F%2Fwww.y8.com%2Fgames%2Fsoccer_skills_euro_cup_2021_edition&key=y8&value=default",
+    "category": "Brain Boosts",
+    "icon": "CircleDot",
+    "instructions": "Drag to control players, pass, and shoot. Release to perform moves and kick towards the goal.",
+    "credits": "GameDistribution",
+    "color": "from-emerald-600 to-green-800",
+    "thumbnailUrl": "https://img.gamedistribution.com/899c82ac71ba4dd5a571fc9bc35f55f8-512x512.jpeg",
+    "thumbnailFit": "cover"
   }
 ]
