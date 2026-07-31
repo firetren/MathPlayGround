@@ -228,12 +228,16 @@
               </div>
 
               <!-- Sleek Controls like Fullscreen buttons -->
-              <div class="flex items-center gap-3">
-                <button id="arena-fullscreen-btn" class="bg-[#0e7bec] hover:bg-[#0062cc] active:scale-95 transition-all text-white font-extrabold text-xs md:text-sm py-2 px-6 rounded-lg shadow border-b-4 border-blue-950 flex items-center gap-1 cursor-pointer">
+              <div class="flex flex-wrap items-center justify-center gap-3">
+                <button id="arena-fullscreen-btn" class="bg-[#0e7bec] hover:bg-[#0062cc] active:scale-95 transition-all text-white font-extrabold text-xs md:text-sm py-2 px-5 rounded-lg shadow border-b-4 border-blue-950 flex items-center gap-1.5 cursor-pointer">
                   <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
                   <span>View Fullscreen</span>
                 </button>
-                <button id="arena-reload-btn" class="bg-slate-100 hover:bg-slate-200 text-slate-705 text-xs font-bold py-2.5 px-4 rounded-lg border border-slate-300 flex items-center gap-1 cursor-pointer">
+                <button id="arena-manage-save-btn" class="bg-[#13b567] hover:bg-[#0f9655] active:scale-95 transition-all text-white font-extrabold text-xs md:text-sm py-2 px-5 rounded-lg shadow border-b-4 border-green-900 flex items-center gap-1.5 cursor-pointer">
+                  <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                  <span>Manage Save</span>
+                </button>
+                <button id="arena-reload-btn" class="bg-slate-100 hover:bg-slate-200 text-slate-705 text-xs font-bold py-2 px-4 rounded-lg border border-slate-300 flex items-center gap-1.5 cursor-pointer">
                   <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8m0 0V4m0 4h4m14 4a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16m0 0v4m0-4h4"/></svg>
                   <span>Restart</span>
                 </button>
@@ -284,7 +288,7 @@
             <nav id="categories-tab-bar" class="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
               <button 
                 data-category="All" 
-                class="bg-[#1d78c1] text-white border-b-4 border-[#0F5A94] font-black hover:scale-[1.03] hover:brightness-110 active:translate-y-0.5 rounded-2xl py-3.5 px-3 transition-all text-xs sm:text-[15px] uppercase tracking-dense shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
+                class="bg-[#ff3b47] text-white border-b-4 border-[#c82333] font-black hover:scale-[1.03] hover:brightness-110 active:translate-y-0.5 rounded-2xl py-3.5 px-3 transition-all text-xs sm:text-[15px] uppercase tracking-dense shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans"
               >
                 Math Games
               </button>
@@ -308,9 +312,14 @@
               </button>
               <button 
                 data-category="Favorites" 
-                class="bg-[#c22d41] text-white border-b-4 border-[#941A2B] font-black hover:scale-[1.03] hover:brightness-110 active:translate-y-0.5 rounded-2xl py-3.5 px-3 transition-all text-xs sm:text-[15px] uppercase tracking-dense shadow-sm flex flex-col items-center justify-center cursor-pointer font-sans col-span-2 sm:col-span-1"
+                class="bg-[#6aa279] text-white border-b-4 border-[#507d5c] font-black hover:scale-[1.03] hover:brightness-110 active:translate-y-0.5 rounded-2xl py-3.5 px-3 transition-all text-xs sm:text-[15px] uppercase tracking-dense shadow-sm flex flex-row items-center justify-center gap-2 cursor-pointer font-sans col-span-2 sm:col-span-1"
               >
-                Library / Pin Game
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 4 L96 50 L50 96 L4 50 Z" fill="#4d825c" stroke="#ffffff" stroke-width="5" />
+                  <path d="M50 22 L78 50 L50 78 L22 50 Z" fill="#ffffff" />
+                  <path d="M50 36 L64 50 L50 64 L36 50 Z" fill="#4d825c" />
+                </svg>
+                <span>Friend Code</span>
                 <span id="fav-category-badge" class="hidden font-mono text-[10px] px-2 py-0.5 rounded-full bg-white/20 ml-1">0</span>
               </button>
 
@@ -851,6 +860,136 @@
           <div class="flex justify-end border-t border-slate-200 pt-3 mt-1">
             <button id="sync-close-cancel-btn" class="px-4 py-2 text-xs font-bold uppercase text-slate-600 bg-[#f1f5f9] hover:bg-slate-200 rounded-xl transition-colors cursor-pointer">Close</button>
           </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 5. Manage Game Save Modal Popup (Hidden by default) -->
+    <div id="manage-save-modal-ambient" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+      <div class="w-full max-w-lg bg-white border border-slate-300 rounded-3xl shadow-2xl overflow-hidden animate-fade-in text-slate-800">
+        
+        <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+          <div class="flex items-center gap-2.5">
+            <div class="p-2 rounded-xl bg-emerald-100 text-emerald-700">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            </div>
+            <div>
+              <h3 id="manage-save-modal-title" class="text-base font-extrabold text-slate-900 font-display">Manage Game Save</h3>
+              <p id="manage-save-modal-subtitle" class="text-xs text-slate-500 font-sans">Backup, export, or restore your game progress</p>
+            </div>
+          </div>
+          <button id="close-manage-save-modal-btn" class="p-1 rounded-md hover:bg-slate-200 text-slate-550 hover:text-slate-805 transition-colors cursor-pointer font-bold">
+            ✕
+          </button>
+        </div>
+
+        <div class="p-6 flex flex-col gap-4 max-h-[75vh] overflow-y-auto">
+          
+          <!-- Status Banner -->
+          <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-start gap-3">
+            <div class="p-1.5 bg-emerald-500 text-white rounded-lg shrink-0 mt-0.5">
+              ✔
+            </div>
+            <div class="text-xs text-emerald-900 leading-relaxed font-sans">
+              <span class="font-bold block text-emerald-950 text-sm mb-0.5">Local Storage Auto-Save Active</span>
+              Your game progress is automatically saved inside your browser cache. Use the tools below to create permanent backup files or transfer your saves between devices!
+            </div>
+          </div>
+
+          <!-- Action Cards Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            
+            <!-- Quick Snapshot Backup -->
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between gap-3 hover:border-emerald-300 transition-all">
+              <div>
+                <div class="flex items-center gap-2 text-slate-800 font-bold text-xs uppercase tracking-wider mb-1">
+                  <span>💾</span> Quick Snapshot
+                </div>
+                <p class="text-[11px] text-slate-500 leading-normal">
+                  Save an instant backup snapshot directly to local browser memory.
+                </p>
+              </div>
+              <button id="save-quick-backup-btn" class="w-full py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl transition-all shadow-sm cursor-pointer active:scale-95">
+                Create Local Snapshot
+              </button>
+            </div>
+
+            <!-- Restore Snapshot -->
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between gap-3 hover:border-blue-300 transition-all">
+              <div>
+                <div class="flex items-center gap-2 text-slate-800 font-bold text-xs uppercase tracking-wider mb-1">
+                  <span>↺</span> Restore Snapshot
+                </div>
+                <p id="save-snapshot-status-text" class="text-[11px] text-slate-500 leading-normal">
+                  Reload your last created snapshot state.
+                </p>
+              </div>
+              <button id="restore-quick-backup-btn" class="w-full py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-all shadow-sm cursor-pointer active:scale-95">
+                Restore Snapshot
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Export & Import Section -->
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col gap-3">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-slate-700">Export & Import Save File / Data</span>
+            
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              Copy or download your game save state code to keep your progress safe even if you clear your browser history!
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+              <button id="export-save-file-btn" class="flex-1 min-w-[130px] py-2 px-3 text-xs font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 rounded-xl transition-all shadow-sm cursor-pointer flex items-center justify-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download Save (.json)</span>
+              </button>
+
+              <button id="copy-save-code-btn" class="flex-1 min-w-[130px] py-2 px-3 text-xs font-bold text-slate-800 bg-white border border-slate-300 hover:bg-slate-100 rounded-xl transition-all shadow-sm cursor-pointer flex items-center justify-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy Save Code</span>
+              </button>
+            </div>
+
+            <!-- Import Save Text Box -->
+            <div class="mt-1 flex flex-col gap-2">
+              <label class="text-[10px] font-bold uppercase text-slate-500">Paste Save Code or Load File</label>
+              <textarea id="input-import-save-data" placeholder="Paste exported save data code here..." rows="2" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs font-mono text-slate-800 focus:outline-none focus:border-blue-500 resize-none"></textarea>
+              
+              <div class="flex items-center justify-between gap-2">
+                <label class="px-3 py-1.5 text-xs font-bold text-slate-700 bg-slate-200 hover:bg-slate-300 rounded-lg cursor-pointer transition-colors inline-flex items-center gap-1">
+                  <span>📁 Load File...</span>
+                  <input type="file" id="input-save-file-picker" accept=".json,.txt,.sav" class="hidden" />
+                </label>
+
+                <button id="apply-import-save-btn" class="px-4 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-all shadow-sm cursor-pointer">
+                  Import & Apply Save
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Danger Zone: Reset Progress -->
+          <div class="border-t border-slate-200 pt-3 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-rose-600 block">Reset Progress</span>
+              <span class="text-[10px] text-slate-400">Clear saved data for this game to start over</span>
+            </div>
+            <button id="reset-game-save-btn" class="px-3 py-1.5 text-xs font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition-all cursor-pointer">
+              Clear Save Data
+            </button>
+          </div>
+
+          <!-- Feedback alert message banner -->
+          <div id="manage-save-alert-banner" class="hidden p-3 rounded-xl text-xs font-bold text-center animate-fade-in"></div>
+
+        </div>
+
+        <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 flex justify-end">
+          <button id="close-manage-save-modal-footer-btn" class="px-5 py-2 text-xs font-bold uppercase text-slate-700 bg-slate-200 hover:bg-slate-300 rounded-xl transition-colors cursor-pointer">
+            Close
+          </button>
         </div>
 
       </div>

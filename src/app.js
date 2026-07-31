@@ -333,6 +333,9 @@ function setupEventListeners() {
   }
   if (closeSyncBtn) closeSyncBtn.addEventListener('click', closeSyncCodebaseModal);
   if (cancelSyncBtn) cancelSyncBtn.addEventListener('click', closeSyncCodebaseModal);
+  
+  // Setup Manage Save Modal listeners
+  setupManageSaveModalListeners();
   if (copySyncBtn) {
     copySyncBtn.addEventListener('click', () => {
       const textarea = document.getElementById('sync-json-textarea');
@@ -1049,24 +1052,10 @@ function setupArenaView(game) {
     }
   }
 
-  // Adjust progress warning text for Smash Karts vs generic games
+  // Hide progress save warning box
   const warningBox = document.getElementById('arena-saves-warning-box');
-  const warningContent = document.getElementById('arena-saves-warning-content');
   if (warningBox) {
-    warningBox.classList.remove('hidden');
-    if (warningContent) {
-      if (game.id === 'smash-karts') {
-        warningContent.innerHTML = `
-          <h4 class="font-bold text-sm text-rose-400 mb-0.5">⚠️ Math Karts Save Warning</h4>
-          <p class="leading-relaxed text-rose-200 font-sans">Your unblockedxyz portal account will <strong>NOT</strong> save your progress. To save your levels, stats, and unlocked customization items, you must register or log in to a personal account directly inside the Math Karts game client.</p>
-        `;
-      } else {
-        warningContent.innerHTML = `
-          <h4 class="font-bold text-sm text-rose-400 mb-0.5">⚠️ No Account Cloud Saves</h4>
-          <p class="leading-relaxed text-rose-200 font-sans">Because games run in an isolated browser sandbox, <strong>progress, custom levels, and high scores are NOT saved to your account database</strong>. Refreshing or exiting the game resets your session.</p>
-        `;
-      }
-    }
+    warningBox.classList.add('hidden');
   }
 
   // Toggle user badge in play modal
@@ -1216,6 +1205,15 @@ function setupArenaView(game) {
         }
       }
     }), fullBtn);
+  }
+
+  // Manage save button listener
+  const manageSaveBtn = document.getElementById('arena-manage-save-btn');
+  if (manageSaveBtn) {
+    const newSaveBtn = manageSaveBtn.cloneNode(true);
+    manageSaveBtn.parentNode.replaceChild(newClearBtnHandler(newSaveBtn, () => {
+      openManageSaveModal(game);
+    }), manageSaveBtn);
   }
 
   // Theater width layout adjustment
@@ -1402,6 +1400,247 @@ function closeSyncCodebaseModal() {
     document.body.style.overflow = 'auto';
   }
 }
+
+/**
+ * Manage Save Modal Logic & Utilities
+ */
+let currentManagingGame = null;
+
+function openManageSaveModal(game) {
+  currentManagingGame = game || selectedGame;
+  if (!currentManagingGame) return;
+
+  const modal = document.getElementById('manage-save-modal-ambient');
+  const title = document.getElementById('manage-save-modal-title');
+  const subtitle = document.getElementById('manage-save-modal-subtitle');
+  const alertBanner = document.getElementById('manage-save-alert-banner');
+  const statusText = document.getElementById('save-snapshot-status-text');
+
+  if (title) title.textContent = `Manage Save — ${currentManagingGame.title}`;
+  if (subtitle) subtitle.textContent = `Backup, export, or restore save state for ${currentManagingGame.title}`;
+  if (alertBanner) alertBanner.classList.add('hidden');
+
+  // Check if a quick snapshot exists
+  const snapshot = localStorage.getItem(`save_snapshot_${currentManagingGame.id}`);
+  if (statusText) {
+    if (snapshot) {
+      try {
+        const parsed = JSON.parse(snapshot);
+        const timeStr = parsed.savedAt ? new Date(parsed.savedAt).toLocaleTimeString() : 'Recently';
+        statusText.textContent = `Snapshot available from ${timeStr}`;
+      } catch (e) {
+        statusText.textContent = 'Local snapshot found.';
+      }
+    } else {
+      statusText.textContent = 'No local snapshot saved yet.';
+    }
+  }
+
+  if (modal) {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeManageSaveModal() {
+  const modal = document.getElementById('manage-save-modal-ambient');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+}
+
+function showSaveAlert(msg, isSuccess = true) {
+  const banner = document.getElementById('manage-save-alert-banner');
+  if (banner) {
+    banner.textContent = msg;
+    banner.className = isSuccess 
+      ? 'p-3 rounded-xl text-xs font-bold text-center bg-emerald-100 text-emerald-800 border border-emerald-300 animate-fade-in' 
+      : 'p-3 rounded-xl text-xs font-bold text-center bg-rose-100 text-rose-800 border border-rose-300 animate-fade-in';
+    banner.classList.remove('hidden');
+  }
+}
+
+function getGameSaveData(game) {
+  if (!game) return {};
+  const data = {};
+  
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (!key) continue;
+    if (key.includes(game.id) || key.startsWith('save_snapshot_') || key.includes('emulator') || key.includes('snokido') || key.includes('game') || key.includes('pokemon')) {
+      data[key] = localStorage.getItem(key);
+    }
+  }
+
+  return {
+    gameId: game.id,
+    gameTitle: game.title,
+    savedAt: new Date().toISOString(),
+    localStorageData: data
+  };
+}
+
+function setupManageSaveModalListeners() {
+  const closeBtn = document.getElementById('close-manage-save-modal-btn');
+  const footerCloseBtn = document.getElementById('close-manage-save-modal-footer-btn');
+  
+  if (closeBtn) closeBtn.addEventListener('click', closeManageSaveModal);
+  if (footerCloseBtn) footerCloseBtn.addEventListener('click', closeManageSaveModal);
+
+  // Quick Snapshot
+  const quickSaveBtn = document.getElementById('save-quick-backup-btn');
+  if (quickSaveBtn) {
+    quickSaveBtn.addEventListener('click', () => {
+      if (!currentManagingGame) return;
+      const saveData = getGameSaveData(currentManagingGame);
+      localStorage.setItem(`save_snapshot_${currentManagingGame.id}`, JSON.stringify(saveData));
+      showSaveAlert(`✔ Quick snapshot saved for ${currentManagingGame.title}!`);
+      
+      const statusText = document.getElementById('save-snapshot-status-text');
+      if (statusText) statusText.textContent = `Snapshot created at ${new Date().toLocaleTimeString()}`;
+    });
+  }
+
+  // Restore Snapshot
+  const restoreSaveBtn = document.getElementById('restore-quick-backup-btn');
+  if (restoreSaveBtn) {
+    restoreSaveBtn.addEventListener('click', () => {
+      if (!currentManagingGame) return;
+      const snapshot = localStorage.getItem(`save_snapshot_${currentManagingGame.id}`);
+      if (!snapshot) {
+        showSaveAlert('No saved snapshot found for this game.', false);
+        return;
+      }
+      try {
+        const parsed = JSON.parse(snapshot);
+        if (parsed.localStorageData) {
+          Object.keys(parsed.localStorageData).forEach(k => {
+            localStorage.setItem(k, parsed.localStorageData[k]);
+          });
+        }
+        showSaveAlert(`✔ Snapshot restored! Reloading game container...`);
+        setTimeout(() => {
+          closeManageSaveModal();
+          setupArenaView(currentManagingGame);
+        }, 1200);
+      } catch (e) {
+        showSaveAlert('Failed to restore snapshot data.', false);
+      }
+    });
+  }
+
+  // Export File (.json)
+  const exportFileBtn = document.getElementById('export-save-file-btn');
+  if (exportFileBtn) {
+    exportFileBtn.addEventListener('click', () => {
+      if (!currentManagingGame) return;
+      const saveData = getGameSaveData(currentManagingGame);
+      const jsonStr = JSON.stringify(saveData, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${currentManagingGame.id}-save-backup.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showSaveAlert('✔ Save file downloaded successfully!');
+    });
+  }
+
+  // Copy Save Code
+  const copyCodeBtn = document.getElementById('copy-save-code-btn');
+  if (copyCodeBtn) {
+    copyCodeBtn.addEventListener('click', () => {
+      if (!currentManagingGame) return;
+      const saveData = getGameSaveData(currentManagingGame);
+      const code = btoa(JSON.stringify(saveData));
+      navigator.clipboard.writeText(code).then(() => {
+        showSaveAlert('✔ Save code copied to clipboard!');
+      }).catch(() => {
+        showSaveAlert('Failed to copy code automatically.', false);
+      });
+    });
+  }
+
+  // File picker upload
+  const filePicker = document.getElementById('input-save-file-picker');
+  if (filePicker) {
+    filePicker.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        const content = evt.target.result;
+        const textarea = document.getElementById('input-import-save-data');
+        if (textarea) textarea.value = content;
+      };
+      reader.readAsText(file);
+    });
+  }
+
+  // Apply Import
+  const applyImportBtn = document.getElementById('apply-import-save-btn');
+  if (applyImportBtn) {
+    applyImportBtn.addEventListener('click', () => {
+      if (!currentManagingGame) return;
+      const textarea = document.getElementById('input-import-save-data');
+      if (!textarea || !textarea.value.trim()) {
+        showSaveAlert('Please paste save code or load a file first.', false);
+        return;
+      }
+
+      let rawText = textarea.value.trim();
+      let parsed = null;
+
+      try {
+        if (!rawText.startsWith('{')) {
+          try {
+            rawText = atob(rawText);
+          } catch (e) {
+            // keep
+          }
+        }
+        parsed = JSON.parse(rawText);
+      } catch (e) {
+        showSaveAlert('Invalid save data format.', false);
+        return;
+      }
+
+      if (parsed && parsed.localStorageData) {
+        Object.keys(parsed.localStorageData).forEach(k => {
+          localStorage.setItem(k, parsed.localStorageData[k]);
+        });
+        showSaveAlert('✔ Save data imported successfully! Reloading game...');
+        textarea.value = '';
+        setTimeout(() => {
+          closeManageSaveModal();
+          setupArenaView(currentManagingGame);
+        }, 1200);
+      } else {
+        showSaveAlert('No valid save records found in provided input.', false);
+      }
+    });
+  }
+
+  // Clear / Reset Game Save
+  const resetBtn = document.getElementById('reset-game-save-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (!currentManagingGame) return;
+      if (confirm(`Are you sure you want to reset all save data for ${currentManagingGame.title}?`)) {
+        localStorage.removeItem(`save_snapshot_${currentManagingGame.id}`);
+        showSaveAlert('Save data cleared. Reloading game...');
+        setTimeout(() => {
+          closeManageSaveModal();
+          setupArenaView(currentManagingGame);
+        }, 1200);
+      }
+    });
+  }
+}
+
+window.openManageSaveModal = openManageSaveModal;
 
 /**
  * Fallback static icon SVGs for lightweight Vanilla integration

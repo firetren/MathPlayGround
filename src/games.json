@@ -1,7 +1,7 @@
 [
   {
     "id": "racing-limits",
-    "title": "Racing Limits",
+    "title": "Racing Addition",
     "description": "Connect blocks of numbers in high-octane speed challenges!",
     "iframeUrl": "https://racing-limits.game-files.crazygames.com/unity/unity2020/racing-limits.html?isFirstSession=true&v=2.2",
     "category": "Math Games",
@@ -12,19 +12,7 @@
     "thumbnailUrl": "https://i.ibb.co/FbVN4fYH/racing-limits-thumbnail-mathsplayground-copy.png",
     "thumbnailFit": "cover"
   },
-  {
-    "id": "city-bus-driver",
-    "title": "City Bus Driver",
-    "description": "Trace the paths with absolute concentration and guide your vehicle safely.",
-    "iframeUrl": "https://games.crazygames.com/en_US/city-bus-driver/index.html?isFirstSession=true&v=2.2",
-    "category": "Logic Lab",
-    "icon": "Award",
-    "instructions": "Hold and drag along the line carefully to guide the cat racer through winding curves.",
-    "credits": "Nod Games",
-    "color": "from-indigo-600 to-indigo-800",
-    "thumbnailUrl": "https://i.ibb.co/cKFjgZHc/City-Bus-Driver-thumbnail.jpg",
-    "thumbnailFit": "cover"
-  },
+
   {
     "id": "drift-boss",
     "title": "Drift Boss Maze",
@@ -116,19 +104,7 @@
     "thumbnailUrl": "https://i.ibb.co/1f3fmdDY/Stickman-Hook.png",
     "thumbnailFit": "cover"
   },
-  {
-    "id": "moto-x3m-2",
-    "title": "Moto X3M 2",
-    "description": "Guide duck life runners across elevated logic panels and obstacles.",
-    "iframeUrl": "https://html5.gamedistribution.com/rvvASMiM/5b0abd4c0faa4f5eb190a9a16d5a1b4c/index.html?gd_zone_config=eyJwYXJlbnRVUkwiOiJodHRwczovL21vdG94M20yLmlvLyIsInBhcmVudERvbWFpbiI6Im1vdG94M20yLmlvIiwidG9wRG9tYWluIjoibW90b3gzbTIuaW8iLCJoYXNJbXByZXNzaW9uIjpmYWxzZSwibG9hZGVyRW5hYmxlZCI6dHJ1ZSwiaG9zdCI6Imh0bWw1LmdhbWVkaXN0cmlidXRpb24uY29tIiwidmVyc2lvbiI6IjEuNS4xOCJ9",
-    "category": "Brain Boosts",
-    "icon": "Zap",
-    "instructions": "Steer and lean the motorcycle racer precisely over loops and ramps inside the logic course.",
-    "credits": "Madpuffers",
-    "color": "from-red-500 to-orange-600",
-    "thumbnailUrl": "https://i.ibb.co/Mx3tBk87/Moto-x3m-thumbnail-mathsplayground-copy.avif",
-    "thumbnailFit": "cover"
-  },
+
   {
     "id": "blacktop-police-chase",
     "title": "Police Chase",
@@ -244,6 +220,19 @@
     "credits": "GameDistribution",
     "color": "from-sky-500 to-blue-700",
     "thumbnailUrl": "https://i.ibb.co/6chSQXs3/rooftop-run-xs.webp",
+    "thumbnailFit": "cover"
+  },
+  {
+    "id": "pokemon-emeraude",
+    "title": "Pokémon Emeraude",
+    "description": "Explore the Hoenn region, catch wild Pokémon, battle trainers, and become the champion in Pokémon Emerald!",
+    "iframeUrl": "https://w8.snokido.com/embed/pokemon-emeraude",
+    "category": "Brain Boosts",
+    "icon": "Gamepad",
+    "instructions": "Use Arrow keys / WASD to move, Z / X for A and B buttons, and Enter for Start.",
+    "credits": "Game Freak / Snokido",
+    "color": "from-emerald-600 to-teal-800",
+    "thumbnailUrl": "https://img.snokido.com/games/images/pokemon-emeraude.jpg",
     "thumbnailFit": "cover"
   }
 ]
