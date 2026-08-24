@@ -1157,7 +1157,8 @@ function setupArenaView(game) {
         class="w-full border-0 absolute"
         style="${isCrazyGame ? 'top: 0; left: 0; width: 100%; height: calc(100% + 42px);' : 'top: 0; left: 0; width: 100%; height: 100%;'}"
         allow="autoplay; fullscreen; gamepad; focus; keyboard; accelerometer; gyroscope; keyboard-map; payment"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-pointer-lock allow-modals allow-orientation-lock allow-presentation allow-downloads allow-popups-to-escape-sandbox"
+        scrolling="no"
+        allowfullscreen="true"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>
     `;
@@ -1207,9 +1208,54 @@ function setupArenaView(game) {
     }), fullBtn);
   }
 
-  // Manage save button listener
+  // Manage save button listener (only shown for Pokémon Emeraude)
   const manageSaveBtn = document.getElementById('arena-manage-save-btn');
+  const loadRomBtn = document.getElementById('arena-load-rom-btn');
+  const romFileInput = document.getElementById('arena-rom-file-input');
+
+  const isPokemon = game && (game.id === 'pokemon-emeraude' || (game.id && game.id.toLowerCase().includes('pokemon')));
+
+  if (loadRomBtn && romFileInput) {
+    if (isPokemon) {
+      loadRomBtn.classList.remove('hidden');
+    } else {
+      loadRomBtn.classList.add('hidden');
+    }
+
+    const newLoadRomBtn = loadRomBtn.cloneNode(true);
+    loadRomBtn.parentNode.replaceChild(newClearBtnHandler(newLoadRomBtn, () => {
+      romFileInput.value = '';
+      romFileInput.click();
+    }), loadRomBtn);
+
+    romFileInput.onchange = (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      const iframe = document.getElementById('game-active-iframe');
+      if (iframe) {
+        try {
+          if (iframe.contentWindow && typeof iframe.contentWindow.loadCustomGbaFile === 'function') {
+            iframe.contentWindow.loadCustomGbaFile(file);
+          } else {
+            const blobUrl = URL.createObjectURL(file);
+            sessionStorage.setItem('temp_custom_rom_name', file.name);
+            iframe.src = `./pokemon-emeraude-player.html?blob=${encodeURIComponent(blobUrl)}`;
+          }
+        } catch (err) {
+          console.log('Custom ROM dispatch fallback', err);
+        }
+      }
+    };
+  }
+
   if (manageSaveBtn) {
+    if (isPokemon) {
+      manageSaveBtn.classList.remove('hidden');
+    } else {
+      manageSaveBtn.classList.add('hidden');
+    }
+
     const newSaveBtn = manageSaveBtn.cloneNode(true);
     manageSaveBtn.parentNode.replaceChild(newClearBtnHandler(newSaveBtn, () => {
       openManageSaveModal(game);
@@ -1449,6 +1495,8 @@ function closeManageSaveModal() {
     document.body.style.overflow = 'auto';
   }
 }
+window.closeManageSaveModal = closeManageSaveModal;
+window.openManageSaveModal = openManageSaveModal;
 
 function showSaveAlert(msg, isSuccess = true) {
   const banner = document.getElementById('manage-save-alert-banner');

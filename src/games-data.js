@@ -226,11 +226,11 @@ export const defaultGamesData = [
     "id": "pokemon-emeraude",
     "title": "Pokémon Emeraude",
     "description": "Explore the Hoenn region, catch wild Pokémon, battle trainers, and become the champion in Pokémon Emerald!",
-    "iframeUrl": "https://w8.snokido.com/embed/pokemon-emeraude",
+    "iframeUrl": "./pokemon-emeraude-player.html",
     "category": "Brain Boosts",
     "icon": "Gamepad",
     "instructions": "Use Arrow keys / WASD to move, Z / X for A and B buttons, and Enter for Start.",
-    "credits": "Game Freak / Snokido",
+    "credits": "Game Freak / GBA Web",
     "color": "from-emerald-600 to-teal-800",
     "thumbnailUrl": "https://img.snokido.com/games/images/pokemon-emeraude.jpg",
     "thumbnailFit": "cover"

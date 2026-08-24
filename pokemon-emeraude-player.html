@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon Emeraude - GBA Web Emulator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #0b1120;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      color: #fff;
+    }
+    #game-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    #game-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .custom-loader {
+      position: absolute;
+      inset: 0;
+      background: #090d16;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      z-index: 10;
+      transition: opacity 0.3s ease;
+      padding: 24px;
+      text-align: center;
+    }
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(16, 185, 129, 0.2);
+      border-top-color: #10b981;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .title-banner {
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+      color: #34d399;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .subtitle {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      max-width: 380px;
+      line-height: 1.4;
+    }
+    .upload-zone {
+      margin-top: 10px;
+      border: 2px dashed rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.06);
+      padding: 16px 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .upload-zone:hover {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: #10b981;
+      transform: translateY(-1px);
+    }
+    .upload-zone span.btn-text {
+      color: #a7f3d0;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .upload-zone span.sub-text {
+      color: #64748b;
+      font-size: 0.75rem;
+    }
+    .top-controls {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      z-index: 30;
+      display: flex;
+      gap: 8px;
+    }
+    .badge-btn {
+      background: #f59e0b;
+      color: #020617;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+      transition: all 0.2s;
+    }
+    .badge-btn:hover {
+      background: #fbbf24;
+      transform: scale(1.03);
+    }
+    .info-bar {
+      position: absolute;
+      bottom: 8px;
+      left: 12px;
+      font-size: 0.75rem;
+      color: #64748b;
+      pointer-events: none;
+      z-index: 20;
+    }
+    #file-input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <div class="top-controls">
+      <button class="badge-btn" onclick="document.getElementById('file-input').click()">
+        📁 Load My .GBA File
+      </button>
+    </div>
+
+    <input type="file" id="file-input" accept=".gba,.bin,.zip">
+
+    <div id="loading-overlay" class="custom-loader">
+      <div class="spinner"></div>
+      <div class="title-banner">
+        <span>🍃 Pokémon Emerald / Emeraude</span>
+      </div>
+      <p class="subtitle" id="status-label">Starting clean ad-free GBA emulator...</p>
+      
+      <div class="upload-zone" onclick="document.getElementById('file-input').click()">
+        <span class="btn-text">📁 Have your own .gba file? Click here</span>
+        <span class="sub-text">Drag & drop .gba or click to browse</span>
+      </div>
+    </div>
+    
+    <div id="game-wrapper"></div>
+    <div class="info-bar">GBA Core • Clean Player • Saves persist automatically</div>
+  </div>
+
+  <script>
+    // Direct archive mirror of Pokemon Emerald
+    const defaultRomUrl = 'https://ia801503.us.archive.org/21/items/Pokemon-Emerald-French/Pokemon%20-%20Version%20Emeraude%20%28France%29.gba';
+
+    let emulatorStarted = false;
+
+    function initEmulator(customRomUrl, gameTitle) {
+      const wrapper = document.getElementById('game-wrapper');
+      if (!wrapper) return;
+      wrapper.innerHTML = '';
+
+      window.EJS_player = '#game-wrapper';
+      window.EJS_core = 'gba';
+      window.EJS_gameName = gameTitle || 'Pokemon Emerald';
+      window.EJS_color = '#10b981';
+      window.EJS_startOnLoaded = true;
+      window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
+      window.EJS_gameUrl = customRomUrl || defaultRomUrl;
+      window.EJS_loadStateURL = '';
+      window.EJS_language = 'en';
+
+      window.EJS_onGameStart = function() {
+        const loader = document.getElementById('loading-overlay');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => {
+            loader.style.display = 'none';
+          }, 350);
+        }
+      };
+
+      window.EJS_onProgress = function(progress) {
+        const label = document.getElementById('status-label');
+        if (label && progress && progress.percent) {
+          label.textContent = `Downloading game data... ${Math.round(progress.percent)}%`;
+        }
+      };
+
+      const existingScript = document.getElementById('ejs-loader-script');
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      const script = document.createElement('script');
+      script.id = 'ejs-loader-script';
+      script.src = 'https://cdn.emulatorjs.org/stable/data/loader.js';
+      document.body.appendChild(script);
+    }
+
+    function handleSelectedFile(file) {
+      if (!file) return;
+      const loader = document.getElementById('loading-overlay');
+      const label = document.getElementById('status-label');
+      if (loader) {
+        loader.style.display = 'flex';
+        loader.style.opacity = '1';
+      }
+      if (label) {
+        label.textContent = `Loading ${file.name}...`;
+      }
+      const blobUrl = URL.createObjectURL(file);
+      initEmulator(blobUrl, file.name.replace(/\.[^/.]+$/, ''));
+    }
+
+    window.loadCustomGbaFile = handleSelectedFile;
+
+    // File input listener
+    document.getElementById('file-input').addEventListener('change', function(e) {
+      if (e.target.files && e.target.files[0]) {
+        handleSelectedFile(e.target.files[0]);
+      }
+    });
+
+    // Drag & drop support
+    window.addEventListener('dragover', (e) => e.preventDefault());
+    window.addEventListener('drop', (e) => {
+      e.preventDefault();
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
+        const file = e.dataTransfer.files[0];
+        handleSelectedFile(file);
+      }
+    });
+
+    // Boot default emulator
+    initEmulator();
+  </script>
+</body>
+</html>
