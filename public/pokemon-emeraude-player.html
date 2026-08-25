@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pokémon Emeraude - GBA Web Emulator</title>
+  <title>Pokémon Emerald / Emeraude - GBA Web Emulator</title>
   <style>
     * {
       box-sizing: border-box;
@@ -15,7 +15,7 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #0b1120;
+      background-color: #070b14;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       color: #fff;
     }
@@ -36,21 +36,21 @@
     .custom-loader {
       position: absolute;
       inset: 0;
-      background: #090d16;
+      background: radial-gradient(circle at center, #0f172a 0%, #060913 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 16px;
-      z-index: 10;
-      transition: opacity 0.3s ease;
+      z-index: 20;
+      transition: opacity 0.35s ease;
       padding: 24px;
       text-align: center;
     }
     .spinner {
-      width: 48px;
-      height: 48px;
-      border: 4px solid rgba(16, 185, 129, 0.2);
+      width: 52px;
+      height: 52px;
+      border: 4px solid rgba(16, 185, 129, 0.15);
       border-top-color: #10b981;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
@@ -59,8 +59,8 @@
       to { transform: rotate(360deg); }
     }
     .title-banner {
-      font-weight: 800;
-      font-size: 1.35rem;
+      font-weight: 900;
+      font-size: 1.45rem;
       letter-spacing: -0.02em;
       color: #34d399;
       display: flex;
@@ -68,37 +68,56 @@
       gap: 8px;
     }
     .subtitle {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #94a3b8;
-      max-width: 380px;
-      line-height: 1.4;
+      max-width: 440px;
+      line-height: 1.45;
     }
     .upload-zone {
       margin-top: 10px;
       border: 2px dashed rgba(16, 185, 129, 0.4);
-      background: rgba(16, 185, 129, 0.06);
-      padding: 16px 24px;
-      border-radius: 12px;
+      background: rgba(16, 185, 129, 0.08);
+      padding: 16px 28px;
+      border-radius: 14px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 6px;
+      max-width: 380px;
+      width: 100%;
     }
     .upload-zone:hover {
-      background: rgba(16, 185, 129, 0.15);
+      background: rgba(16, 185, 129, 0.18);
       border-color: #10b981;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
     .upload-zone span.btn-text {
-      color: #a7f3d0;
-      font-weight: 700;
-      font-size: 0.95rem;
+      color: #6ee7b7;
+      font-weight: 800;
+      font-size: 0.98rem;
     }
     .upload-zone span.sub-text {
-      color: #64748b;
+      color: #94a3b8;
+      font-size: 0.78rem;
+    }
+    .controls-hint {
+      margin-top: 8px;
       font-size: 0.75rem;
+      color: #64748b;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .key-badge {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: monospace;
+      color: #cbd5e1;
     }
     .top-controls {
       position: absolute;
@@ -110,28 +129,28 @@
     }
     .badge-btn {
       background: #f59e0b;
-      color: #020617;
+      color: #0f172a;
       font-size: 0.8rem;
       font-weight: 800;
-      padding: 6px 12px;
+      padding: 7px 14px;
       border-radius: 8px;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
       transition: all 0.2s;
     }
     .badge-btn:hover {
       background: #fbbf24;
-      transform: scale(1.03);
+      transform: scale(1.04);
     }
     .info-bar {
       position: absolute;
       bottom: 8px;
       left: 12px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: #64748b;
       pointer-events: none;
       z-index: 20;
@@ -154,25 +173,79 @@
     <div id="loading-overlay" class="custom-loader">
       <div class="spinner"></div>
       <div class="title-banner">
-        <span>🍃 Pokémon Emerald / Emeraude</span>
+        <span>🍃 Pokémon Emerald</span>
       </div>
-      <p class="subtitle" id="status-label">Starting clean ad-free GBA emulator...</p>
+      <p class="subtitle" id="status-label">Starting clean GBA emulator...</p>
       
       <div class="upload-zone" onclick="document.getElementById('file-input').click()">
-        <span class="btn-text">📁 Have your own .gba file? Click here</span>
-        <span class="sub-text">Drag & drop .gba or click to browse</span>
+        <span class="btn-text">📁 Have your own Pokémon Emerald .gba?</span>
+        <span class="sub-text">Click here or drag & drop your .gba file to load it instantly</span>
+      </div>
+
+      <div class="controls-hint">
+        <span>Move: <span class="key-badge">Arrows / WASD</span></span>
+        <span>A / B: <span class="key-badge">Z / X</span></span>
+        <span>Start: <span class="key-badge">Enter</span></span>
+        <span>Select: <span class="key-badge">Shift</span></span>
       </div>
     </div>
     
     <div id="game-wrapper"></div>
-    <div class="info-bar">GBA Core • Clean Player • Saves persist automatically</div>
+    <div class="info-bar">GBA Core • Ad-Free Player • Automatic local state saves</div>
   </div>
 
   <script>
-    // Direct archive mirror of Pokemon Emerald
-    const defaultRomUrl = 'https://ia801503.us.archive.org/21/items/Pokemon-Emerald-French/Pokemon%20-%20Version%20Emeraude%20%28France%29.gba';
+    // IndexedDB helper to save and retrieve user's custom ROM permanently
+    const DB_NAME = 'PokemonEmeraldGbaDB';
+    const STORE_NAME = 'custom_roms';
 
-    let emulatorStarted = false;
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, 1);
+        req.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(STORE_NAME)) {
+            db.createObjectStore(STORE_NAME);
+          }
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function getSavedRom() {
+      try {
+        const db = await openDB();
+        return new Promise((resolve) => {
+          const tx = db.transaction(STORE_NAME, 'readonly');
+          const store = tx.objectStore(STORE_NAME);
+          const req = store.get('saved_emerald_rom');
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => resolve(null);
+        });
+      } catch (e) {
+        return null;
+      }
+    }
+
+    async function saveRomToIndexedDB(fileData, fileName) {
+      try {
+        const db = await openDB();
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        store.put({ data: fileData, name: fileName, timestamp: Date.now() }, 'saved_emerald_rom');
+      } catch (e) {
+        console.warn('Failed to cache ROM in IndexedDB', e);
+      }
+    }
+
+    // Default clean ROM mirrors
+    const romMirrors = [
+      'https://ia801503.us.archive.org/21/items/Pokemon-Emerald-French/Pokemon%20-%20Version%20Emeraude%20%28France%29.gba',
+      'https://ia601503.us.archive.org/21/items/Pokemon-Emerald-French/Pokemon%20-%20Version%20Emeraude%20%28France%29.gba'
+    ];
+
+    let currentMirrorIndex = 0;
 
     function initEmulator(customRomUrl, gameTitle) {
       const wrapper = document.getElementById('game-wrapper');
@@ -185,7 +258,7 @@
       window.EJS_color = '#10b981';
       window.EJS_startOnLoaded = true;
       window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
-      window.EJS_gameUrl = customRomUrl || defaultRomUrl;
+      window.EJS_gameUrl = customRomUrl || romMirrors[currentMirrorIndex];
       window.EJS_loadStateURL = '';
       window.EJS_language = 'en';
 
@@ -202,7 +275,7 @@
       window.EJS_onProgress = function(progress) {
         const label = document.getElementById('status-label');
         if (label && progress && progress.percent) {
-          label.textContent = `Downloading game data... ${Math.round(progress.percent)}%`;
+          label.textContent = `Loading Game Data... ${Math.round(progress.percent)}%`;
         }
       };
 
@@ -214,10 +287,18 @@
       const script = document.createElement('script');
       script.id = 'ejs-loader-script';
       script.src = 'https://cdn.emulatorjs.org/stable/data/loader.js';
+      
+      script.onerror = function() {
+        const label = document.getElementById('status-label');
+        if (label) {
+          label.textContent = 'Please select your .gba file above to play.';
+        }
+      };
+
       document.body.appendChild(script);
     }
 
-    function handleSelectedFile(file) {
+    async function handleFile(file) {
       if (!file) return;
       const loader = document.getElementById('loading-overlay');
       const label = document.getElementById('status-label');
@@ -228,31 +309,50 @@
       if (label) {
         label.textContent = `Loading ${file.name}...`;
       }
-      const blobUrl = URL.createObjectURL(file);
-      initEmulator(blobUrl, file.name.replace(/\.[^/.]+$/, ''));
+
+      // Read file to ArrayBuffer to store in IndexedDB
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        const arrayBuffer = e.target.result;
+        await saveRomToIndexedDB(arrayBuffer, file.name);
+        const blob = new Blob([arrayBuffer]);
+        const blobUrl = URL.createObjectURL(blob);
+        initEmulator(blobUrl, file.name.replace(/\.[^/.]+$/, ''));
+      };
+      reader.readAsArrayBuffer(file);
     }
 
-    window.loadCustomGbaFile = handleSelectedFile;
+    window.loadCustomGbaFile = handleFile;
 
-    // File input listener
     document.getElementById('file-input').addEventListener('change', function(e) {
       if (e.target.files && e.target.files[0]) {
-        handleSelectedFile(e.target.files[0]);
+        handleFile(e.target.files[0]);
       }
     });
 
-    // Drag & drop support
     window.addEventListener('dragover', (e) => e.preventDefault());
     window.addEventListener('drop', (e) => {
       e.preventDefault();
       if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
-        const file = e.dataTransfer.files[0];
-        handleSelectedFile(file);
+        handleFile(e.dataTransfer.files[0]);
       }
     });
 
-    // Boot default emulator
-    initEmulator();
+    // On start: check if user previously loaded a custom ROM from IndexedDB
+    async function start() {
+      const saved = await getSavedRom();
+      if (saved && saved.data) {
+        const label = document.getElementById('status-label');
+        if (label) label.textContent = `Loading saved ROM: ${saved.name || 'Emerald'}...`;
+        const blob = new Blob([saved.data]);
+        const blobUrl = URL.createObjectURL(blob);
+        initEmulator(blobUrl, saved.name || 'Pokemon Emerald');
+      } else {
+        initEmulator();
+      }
+    }
+
+    start();
   </script>
 </body>
 </html>

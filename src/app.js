@@ -77,6 +77,18 @@ function cleanGameUrl(url) {
     }
   }
 
+  // Prevent relative URLs that point to local files or HTML pages from being redirected
+  if (
+    clean.startsWith('./') ||
+    clean.startsWith('/') ||
+    clean.startsWith('blob:') ||
+    clean.endsWith('.html') ||
+    clean.includes('.html') ||
+    clean.includes('pokemon-emeraude-player')
+  ) {
+    return clean;
+  }
+
   // Handle relative game URLs copy-pasted or imported from sister Playgrounds (e.g., mathplayground.com, puzzleplayground.com)
   if (!clean.startsWith('http://') && !clean.startsWith('https://') && clean.length > 0) {
     if (clean.startsWith('pp-')) {
